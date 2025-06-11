@@ -1,7 +1,13 @@
 import Homepage from "@/components/main/Homepage";
-import CoursePage from "@/components/main/StudentCourse";
+import CoursePage from "@/components/main/StudentAllCourse";
 import CourseLandingPage from "@/components/main/CouseDetail";
 import StudentDashboard from "@/components/main/StudentDashboard";
+import StudentCourses from "@/components/main/StudentCourses";
+import Wishlist from "@/components/main/StudentWishtlist";
+import StudentProfile from "@/components/main/StudentProfile";
+import StudentReviews from "@/components/main/StudentReview";
+import QuizAttemptsDashboard from "@/components/main/StudentQuiz";
+import Order from "@/components/main/StudentOrder";
 export default function Home() {
   return (
     <div>
@@ -9,6 +15,13 @@ export default function Home() {
       <CoursePage/>
       <CourseLandingPage/>
       <StudentDashboard/>
+      <StudentProfile/>
+      <StudentCourses/>
+      <Wishlist/>
+      <StudentReviews/>
+      <QuizAttemptsDashboard/>
+      <Order/>
+
     </div>
   );
 }

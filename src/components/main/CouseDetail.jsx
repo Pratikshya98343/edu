@@ -5,15 +5,7 @@ import { Star, Play, Calendar, User, Video, BookOpen, Facebook, Twitter, Instagr
 export default function CourseLandingPage() {
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, rgb(195, 164, 245), rgb(224, 211, 251), white 90%)' }}>
-      
-      {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-4 bg-white/10 backdrop-blur-sm">
-        <div className="flex items-center space-x-8">
-          <span className="text-gray-600 font-medium">Home</span>
-          <span className="text-gray-600 font-medium">Web Design</span>
-        </div>
-      </nav>
-
+    
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
