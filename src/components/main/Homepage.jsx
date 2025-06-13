@@ -16,15 +16,6 @@ import {
   Quote,
   ChevronLeft,
   ChevronRight,
-  Menu,
-  X,
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
   Zap,
   Target,
   Shield
@@ -229,12 +220,16 @@ const Homepage = () => {
                 <div className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-to-br from-purple-300 to-purple-400 rounded-full opacity-70 animate-pulse delay-150"></div>
               </div>
               {/* Main Image Container */}
-              <div className="relative z-10 flex justify-center">
-                <div className="relative">
-                  {/* Woman Image Placeholder */}
-                  <div className="w-80 h-96 bg-gradient-to-b from-purple-200 to-blue-300 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl">
-                    <div className="text-8xl animate-bounce">👩‍🎓</div>
-                  </div>
+<div className="relative z-10 flex justify-center">
+  <div className="relative">
+    {/* Woman Image Placeholder */}
+    <div className="w-80 h-96 rounded-2xl overflow-hidden shadow-2xl">
+      <img
+        src="Image/women.png" // Replace this with your actual image URL
+        alt="Woman"
+        className="object-cover w-full h-full"
+      />
+    </div>
                   {/* Floating Cards */}
                   <div className="absolute -top-4 -left-8 bg-white rounded-xl shadow-xl p-4 flex items-center space-x-3 animate-float">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
@@ -476,26 +471,6 @@ const Homepage = () => {
                 />
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-400 to-pink-500 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Ready to Start Your Learning Journey?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join thousands of students who have transformed their careers with our courses
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-gray-800 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105">
-              Browse All Courses
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-800 transition-colors transform hover:scale-105">
-              Get Free Trial
-            </button>
           </div>
         </div>
       </section>

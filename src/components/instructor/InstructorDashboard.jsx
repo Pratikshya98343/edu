@@ -14,23 +14,51 @@ import {
   Settings,
   LogOut,
   ArrowRight,
-  Monitor,
-  Laptop,
-  Trophy,
-  Users,
-  Gift,
-  DollarSign
 } from 'lucide-react';
 
+// CourseCard Component
+const CourseCard = ({ title, image, discount, lessons, students, price, oldPrice, reviews }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+      <div className="relative">
+        <img src={image} alt={title} className="w-full h-48 object-cover" />
+        <div className="absolute top-2 right-2 bg-purple-600 text-white px-2 py-1 rounded-md font-bold text-sm">
+          {discount}
+        </div>
+      </div>
+      <div className="p-4">
+        <div className="flex justify-between items-center mb-2">
+          <div className="flex items-center text-yellow-400">
+            ★★★★★
+          </div>
+          <span className="text-sm text-black">{reviews}</span>
+          <span className="text-xl text-purple-600">&#128275;</span>
+        </div>
+        <h3 className="font-semibold text-lg mb-2 text-black">{title}</h3>
+        <p className="text-sm text-black flex items-center gap-1 mb-2">
+          &#128196; {lessons} | {students}
+        </p>
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-lg font-bold text-black">{price}</span>
+          <del className="text-gray-500">{oldPrice}</del>
+        </div>
+        <button className="text-blue-600 flex items-center gap-1 hover:underline">
+          &#128398; Edit
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// Main Dashboard Component
 const InstructorDashboard = () => {
   const [activeNav, setActiveNav] = useState('dashboard');
 
-  // Function to handle navigation click
   const handleNavClick = (navId) => {
     setActiveNav(navId);
   };
 
-  // Navigation items
+  // Navigation Items
   const navigationItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'profile', label: 'My Profile', icon: User },
@@ -41,7 +69,6 @@ const InstructorDashboard = () => {
     { id: 'order-history', label: 'Order History', icon: ShoppingCart },
   ];
 
-  // Instructor-specific items
   const instructorItems = [
     { id: 'my-courses', label: 'My Courses', icon: BookOpen },
     { id: 'announcements', label: 'Announcements', icon: MessageSquare },
@@ -49,13 +76,12 @@ const InstructorDashboard = () => {
     { id: 'assignments', label: 'Assignments', icon: List },
   ];
 
-  // User actions
   const userActions = [
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'logout', label: 'Logout', icon: LogOut },
   ];
 
-  // Stats for the dashboard
+  // Stats for dashboard
   const stats = [
     { icon: '📚', value: '30', color: 'text-blue-800', bg: 'from-blue-100 to-blue-200', iconBg: 'bg-blue-500' },
     { icon: '💻', value: '10', color: 'text-purple-700', bg: 'from-purple-100 to-purple-200', iconBg: 'bg-purple-500' },
@@ -65,8 +91,41 @@ const InstructorDashboard = () => {
     { icon: '💰', value: '25000', color: 'text-yellow-600', bg: 'from-yellow-100 to-yellow-200', iconBg: 'bg-yellow-500' },
   ];
 
-   
-  // Function to render profile content
+  // Sample course data
+  const courses = [
+    {
+      title: "React Front To Back",
+      image: "Image/coursegirl.png", 
+      discount: "-34%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$60",
+      oldPrice: "$84.99",
+      reviews: "(100 Reviews)",
+    },
+    {
+      title: "PHP Beginner Advanced",
+      image: "Image/education.png",
+      discount: "-20%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$80",
+      oldPrice: "$100",
+      reviews: "(21 Reviews)",
+    },
+    {
+      title: "Angular Zero to Mastery",
+      image: "Image/web.png",
+      discount: "-54%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$40",
+      oldPrice: "$90",
+      reviews: "(102 Reviews)",
+    },
+  ];
+
+  // Render Functions
   const renderProfileContent = () => {
     return (
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
@@ -103,7 +162,7 @@ const InstructorDashboard = () => {
           <div className="sm:col-span-2">
             <dt className="text-sm font-medium text-gray-500">Biography</dt>
             <dd className="mt-1 text-sm text-gray-900">
-              I'm the Front-End Developer for #Rainbow IT in Bangladesh, OR. I have serious passion for UI effects, animations, and creating intuitive, dynamic user experiences.
+              I'm the Front-End Developer for #Rainbow IT in Bangladesh, OR. I have serious passion for UI effects, animations, and creating intuitive, dynamic user experiences. 
             </dd>
           </div>
         </dl>
@@ -111,7 +170,6 @@ const InstructorDashboard = () => {
     );
   };
 
-  // Function to render dashboard content
   const renderDashboard = () => {
     return (
       <div className="bg-white rounded-r-2xl p-9 shadow-xl">
@@ -142,18 +200,31 @@ const InstructorDashboard = () => {
   };
 
   const renderCourseContent = () => {
+    return (
+      <div className="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-md h-200 mb-2">
+        <h2 className="text-2xl font-bold mb-4 text-black">My Courses</h2>
+        <div className="flex gap-6 mb-6">
+          <button className="px-4 py-2 border-b-2 border-blue-500 text-black font-medium">Publish</button>
+          <button className="px-4 py-2 text-black font-medium hover:border-b-2 hover:border-gray-400">Pending</button>
+          <button className="px-4 py-2 text-black font-medium hover:border-b-2 hover:border-gray-400">Draft</button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {courses.map((course, index) => (
+            <CourseCard key={index} {...course} />
+          ))}
+        </div>
+      </div>
+    );
+  };
 
-  }
-
-  // Function to render content based on activeNav
   const renderContent = () => {
     switch (activeNav) {
-        case 'dashboard':
+      case 'dashboard':
         return renderDashboard();
       case 'profile':
         return renderProfileContent();
-        case 'courses':
-            return renderCourseContent();
+      case 'courses':
+        return renderCourseContent();
       default:
         return (
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center">
@@ -165,7 +236,7 @@ const InstructorDashboard = () => {
         );
     }
   };
-    
+
   return (
     <div className="m-0 p-4 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 via-30% via-30% to-white to-50% min-h-screen p-5">
       <div className="max-w-6xl mx-auto">
@@ -183,7 +254,7 @@ const InstructorDashboard = () => {
             <div className="flex items-center space-x-6 mb-6 lg:mb-0">
               <div className="w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden">
                 <img
-                  src="Image/InstructorIcon.png"
+                  src="/Image/InstructorIcon.png"
                   alt="John's Profile"
                   className="w-full h-full object-cover"
                 />
@@ -208,16 +279,8 @@ const InstructorDashboard = () => {
               </button>
             </div>
           </div>
-          {/* Decorative elements */}
-          <div className="absolute top-4 right-20 w-32 h-32 opacity-10">
-            <div className="w-full h-full border-l-2 border-white transform rotate-45"></div>
-          </div>
-          <div className="absolute bottom-8 right-8 w-16 h-16 opacity-20">
-            <svg viewBox="0 0 100 100" className="w-full h-full text-white">
-              <path d="M50 10 L90 90 L10 90 Z" fill="currentColor" />
-            </svg>
-          </div>
         </div>
+
         <div className="flex min-h-[300px] mt-10">
           {/* Sidebar */}
           <div className="w-80 bg-slate-50 border-r border-slate-400 rounded-l-2xl">
@@ -283,6 +346,7 @@ const InstructorDashboard = () => {
               </div>
             </div>
           </div>
+
           {/* Dashboard Content */}
           <div className="flex-1">{renderContent()}</div>
         </div>

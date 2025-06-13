@@ -88,7 +88,7 @@ export default function CourseLandingPage() {
                 {/* Instructor Image with Play Button */}
                 <div className="relative hidden md:block">
                   <img 
-                    src="/image/girl.png" 
+                    src="Image/girl.png" 
                     alt="Instructor" 
                     className="w-100 h-64 object-cover rounded-lg" 
                   />
@@ -112,7 +112,7 @@ export default function CourseLandingPage() {
             <div className="bg-white rounded-2xl p-6 shadow-xl">
               <div className="relative mb-4">
                 <img 
-                  src="/image/course-preview.png" 
+                  src="/Image/girl.png" 
                   alt="Course preview" 
                   className="w-full h-48 object-cover rounded-lg" 
                 />
@@ -120,10 +120,6 @@ export default function CourseLandingPage() {
                   <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center">
                     <Play className="w-6 h-6 text-purple-600 ml-1" />
                   </div>
-                </div>
-                <div className="absolute bottom-3 left-3 text-gray-600 text-sm flex items-center space-x-1">
-                  <span>👁</span>
-                  <span>Preview this course</span>
                 </div>
               </div>
 
