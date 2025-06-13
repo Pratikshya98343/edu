@@ -375,7 +375,7 @@ const InstructorDashboard = () => {
   };
 
   return (
-    <div className="m-0 p-4 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 via-30% via-30% to-white to-50% min-h-screen p-5">
+    <div className="m-0  box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300  via-30% to-white to-50% min-h-screen p-5">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div
