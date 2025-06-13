@@ -8,20 +8,23 @@ import StudentProfile from "@/components/main/StudentProfile";
 import StudentReviews from "@/components/main/StudentReview";
 import QuizAttemptsDashboard from "@/components/main/StudentQuiz";
 import Order from "@/components/main/StudentOrder";
+
+import InstructorDashboard from "@/components/instructor/InstructorDashboard";
 export default function Home() {
   return (
     <div>
       <Homepage/>
       <CoursePage/>
       <CourseLandingPage/>
-      <StudentDashboard/>
+      {/* <StudentDashboard/> */}
       <StudentProfile/>
-      <StudentCourses/>
+      {/* <StudentCourses/>
       <Wishlist/>
       <StudentReviews/>
       <QuizAttemptsDashboard/>
-      <Order/>
+      <Order/> */}
 
+    <InstructorDashboard/>
     </div>
   );
 }

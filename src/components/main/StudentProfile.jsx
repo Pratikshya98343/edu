@@ -37,48 +37,16 @@ const StudentProfile = () => {
   });
 
   const orderData = [
-    {
-      id: "#5478",
-      course: "App Development",
-      date: "January 27, 2022",
-      price: "$100.99",
-      status: "completed",
-    },
-    {
-      id: "#4585",
-      course: "Graphic Design",
-      date: "May 27, 2022",
-      price: "$200.99",
-      status: "processing",
-    },
-    {
-      id: "#6656",
-      course: "UI/UX Design",
-      date: "March 27, 2022",
-      price: "$200.99",
-      status: "completed",
-    },
-    {
-      id: "#2045",
-      course: "Web Development",
-      date: "March 27, 2022",
-      price: "$200.99",
-      status: "cancelled",
-    },
-    {
-      id: "#5478",
-      course: "App Development",
-      date: "January 27, 2022",
-      price: "$100.99",
-      status: "completed",
-    },
-    {
-      id: "#4585",
-      course: "Graphic Design",
-      date: "May 27, 2022",
-      price: "$200.99",
-      status: "processing",
-    },
+     { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
+    { id: '#4585', course: 'Graphic', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
+    { id: '#6656', course: 'Graphic', date: 'March 27, 2022', price: '$200.99', status: 'completed' },
+    { id: '#2045', course: 'Application', date: 'March 27, 2022', price: '$200.99', status: 'cancelled' },
+    { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
+    { id: '#4585', course: 'Graphic', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
+    { id: '#6656', course: 'Graphic', date: 'March 27, 2022', price: '$200.99', status: 'completed' },
+    { id: '#2045', course: 'Application', date: 'March 27, 2022', price: '$200.99', status: 'cancelled' },
+    { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
+    { id: '#4585', course: 'Graphic', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
   ];
 
   const navigationItems = [
@@ -122,7 +90,7 @@ const StudentProfile = () => {
   };
   const renderDashboard = () => (
     <div className="flex-1">
-      <div className="bg-white rounded-2xl p-9 shadow-xl">
+      <div className="bg-white rounded-2xl p-9 shadow-xl h-170 align-middle">
         <h2 className="text-gray-700 text-2xl font-semibold mb-8">Dashboard</h2>
 
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1">
@@ -316,8 +284,8 @@ const StudentProfile = () => {
   ];
 
   const renderCourses = () => (
-    <div className="flex-1">
-      <div className="bg-white rounded-2xl shadow-lg p-8">
+    <div className="flex-1 p-7 ">
+      <div className="bg-white rounded-2xl shadow-lg p-8 w-230">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Enrolled Courses
         </h2>
@@ -612,13 +580,13 @@ const StudentProfile = () => {
   ];
 
   const renderWishlist = () => (
-    <div className="flex-1 p-8 bg-slate-50 rounded-r-xl">
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200">
-        <div className="px-6 py-4 border-b border-slate-200">
+    <div className="flex-1 p-3 bg-slate-50 rounded-r-xl">
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 w-200 h-150">
+        <div className="px-5 py-4 border-b border-slate-200">
           <h2 className="text-2xl font-bold text-slate-800">Wishlist</h2>
         </div>
         <div className="overflow-x-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {wishlistData.map((course) => (
               <div
                 key={course.id}
@@ -717,9 +685,13 @@ const StudentProfile = () => {
         >
           <div className="flex flex-col lg:flex-row justify-between items-center relative z-10">
             <div className="flex items-center space-x-6 mb-10 lg:mb-0">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-bold text-2xl border-4 border-white shadow-lg">
-                EH
-              </div>
+              <div className="w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden">
+              <img 
+            src="Image/StudentIcon.png"
+            alt="John's Profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
               <div>
                 <h1 className="text-4xl font-bold text-white mb-2">
                   EMILY HANNAH

@@ -21,10 +21,9 @@ const Footer = () => {
           {/* Logo and Social Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg italic">hi</span>
+              <div className="w-40 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg italic">Eduverse</span>
               </div>
-              <span className="text-2xl font-semibold text-gray-800">Study</span>
             </div>
             
             <div className="flex space-x-3">
