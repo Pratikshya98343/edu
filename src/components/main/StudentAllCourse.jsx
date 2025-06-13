@@ -19,7 +19,7 @@ const CoursePage = () => {
       duration: "42h 30m",
       lectures: 285,
       description: "Master Python programming through hands-on projects. Learn data science, web development, automation, and build real-world applications.",
-      image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop",
+      image: "Image/Python1.png?w=400&h=300&fit=crop",
       category: "Programming",
       level: "All Levels"
     },
@@ -35,7 +35,7 @@ const CoursePage = () => {
       duration: "38h 15m",
       lectures: 198,
       description: "Build responsive websites using HTML5, CSS3, JavaScript, React, and Node.js. Includes portfolio projects and deployment strategies.",
-      image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
+      image: "Image/code.png?w=400&h=300&fit=crop",
       category: "Web Development",
       level: "Beginner"
     },
@@ -51,7 +51,7 @@ const CoursePage = () => {
       duration: "35h 45m",
       lectures: 167,
       description: "Comprehensive course covering statistics, Python, pandas, scikit-learn, and TensorFlow. Build predictive models and data visualizations.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+      image: "Image/data.png?w=400&h=300&fit=crop",
       category: "Data Science",
       level: "Intermediate"
     },
@@ -67,7 +67,7 @@ const CoursePage = () => {
       duration: "28h 20m",
       lectures: 142,
       description: "Learn SEO, social media marketing, Google Analytics, and conversion optimization. Create effective digital marketing campaigns.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+      image: "Image/marketing.png?w=400&h=300&fit=crop",
       category: "Marketing",
       level: "Beginner"
     },
@@ -83,7 +83,7 @@ const CoursePage = () => {
       duration: "32h 10m",
       lectures: 189,
       description: "Master user experience design principles, wireframing, prototyping with Figma, and user research methodologies.",
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=400&h=300&fit=crop",
+      image: "Image/design.png?w=400&h=300&fit=crop",
       category: "Design",
       level: "All Levels"
     },
@@ -99,7 +99,7 @@ const CoursePage = () => {
       duration: "41h 30m",
       lectures: 224,
       description: "Learn Amazon Web Services from basics to advanced. Cover EC2, S3, Lambda, and prepare for AWS certification exams.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop",
+      image: "Image/computing.png? w=400&h=300&fit=crop",
       category: "Cloud Computing",
       level: "Intermediate"
     }

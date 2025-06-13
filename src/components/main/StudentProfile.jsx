@@ -709,7 +709,7 @@ const StudentProfile = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-center space-y-4 mt-10">
+            <div className="flex flex-col items-center space-y-4 mt-16">
               <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 mb-10 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 hover:transform hover:-translate-y-1 shadow-lg">
                 <span>Create Link New Course</span>
                 <ArrowRight className="w-4 h-4" />
