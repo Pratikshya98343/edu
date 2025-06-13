@@ -65,6 +65,7 @@ const InstructorDashboard = () => {
     { icon: '💰', value: '25000', color: 'text-yellow-600', bg: 'from-yellow-100 to-yellow-200', iconBg: 'bg-yellow-500' },
   ];
 
+   
   // Function to render profile content
   const renderProfileContent = () => {
     return (
@@ -140,13 +141,19 @@ const InstructorDashboard = () => {
     );
   };
 
+  const renderCourseContent = () => {
+
+  }
+
   // Function to render content based on activeNav
   const renderContent = () => {
     switch (activeNav) {
+        case 'dashboard':
+        return renderDashboard();
       case 'profile':
         return renderProfileContent();
-      case 'dashboard':
-        return renderDashboard();
+        case 'courses':
+            return renderCourseContent();
       default:
         return (
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center">
@@ -158,7 +165,7 @@ const InstructorDashboard = () => {
         );
     }
   };
-
+    
   return (
     <div className="m-0 p-4 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 via-30% via-30% to-white to-50% min-h-screen p-5">
       <div className="max-w-6xl mx-auto">
