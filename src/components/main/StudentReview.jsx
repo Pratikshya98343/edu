@@ -73,16 +73,16 @@ const StudentReviews = () => {
   ];
 
   return (
-   <div className="m-0 p-4 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 via-30% via-30% to-white to-50% min-h-screen p-5">
+    <div className="m-0 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300  via-30% to-white to-50% min-h-screen p-5">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div 
-          className="px-30 py-30 pt-20 relative overflow-hidden mb-17" 
+        <div
+          className="px-30 py-30 pt-20 relative overflow-hidden mb-17"
           style={{
             backgroundImage: `url('/Image/student.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         >
           <div className="flex flex-col lg:flex-row justify-between items-center relative z-10">
@@ -91,7 +91,9 @@ const StudentReviews = () => {
                 EH
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-white mb-2">EMILY HANNAH</h1>
+                <h1 className="text-4xl font-bold text-white mb-2">
+                  EMILY HANNAH
+                </h1>
                 <div className="flex items-center space-x-6 text-white text-sm">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="w-4 h-4" />
@@ -141,7 +143,9 @@ const StudentReviews = () => {
               </nav>
 
               <div className="mt-10 pt-6 border-t border-slate-200">
-                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">USER</div>
+                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">
+                  USER
+                </div>
                 <nav className="space-y-2">
                   {userActions.map((item) => {
                     const Icon = item.icon;
@@ -160,73 +164,73 @@ const StudentReviews = () => {
             </div>
           </div>
 
-            {/* Main Content */}
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 w-[800px] md:w-[900px] lg:w-[1000px] max-w-full">
-  <div className="px-20 py-4 border-b border-slate-200">
-    <h2 className="text-2xl font-bold text-slate-800">Reviews</h2>
-  </div>
-  <div className="overflow-x-auto">
-    <table className="w-full">
-      <thead>
-        <tr className="bg-slate-50 border-b border-slate-200">
-          <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
-            Course
-          </th>
-          <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
-            Feedback
-          </th>
-        </tr>
-      </thead>
-      <tbody className="divide-y divide-slate-100">
-        {reviewData.map((review, index) => (
-          <tr
-            key={index}
-            className="hover:bg-slate-50 transition-colors duration-150"
-          >
-            <td className="px-6 py-4 text-sm font-medium text-slate-900">
-              {review.course}
-            </td>
-            <td className="px-6 py-4 flex items-start space-x-4">
-              {/* Rating */}
-              <div className="flex items-center space-x-2">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-4 h-4 ${
-                        i < review.rating ? "fill-current" : ""
-                      }`}
-                    />
+          {/* Main Content */}
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 w-[800px] md:w-[900px] lg:w-[1000px] max-w-full">
+            <div className="px-20 py-4 border-b border-slate-200">
+              <h2 className="text-2xl font-bold text-slate-800">Reviews</h2>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-200">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                      Course
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                      Feedback
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {reviewData.map((review, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-slate-50 transition-colors duration-150"
+                    >
+                      <td className="px-6 py-4 text-sm font-medium text-slate-900">
+                        {review.course}
+                      </td>
+                      <td className="px-6 py-4 flex items-start space-x-4">
+                        {/* Rating */}
+                        <div className="flex items-center space-x-2">
+                          <div className="flex text-yellow-400">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-4 h-4 ${
+                                  i < review.rating ? "fill-current" : ""
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-sm text-slate-600">
+                            ({review.reviewsCount} Reviews)
+                          </span>
+                        </div>
+                        {/* Feedback */}
+                        <div className="text-sm text-slate-700">
+                          {review.feedback}
+                        </div>
+                        {/* Actions */}
+                        <div className="flex items-center space-x-4">
+                          <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded-full">
+                            <Edit3 className="w-4 h-4" />
+                          </button>
+                          <button className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-full">
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
                   ))}
-                </div>
-                <span className="text-sm text-slate-600">
-                  ({review.reviewsCount} Reviews)
-                </span>
-              </div>
-              {/* Feedback */}
-              <div className="text-sm text-slate-700">
-                {review.feedback}
-              </div>
-              {/* Actions */}
-              <div className="flex items-center space-x-4">
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded-full">
-                  <Edit3 className="w-4 h-4" />
-                </button>
-                <button className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-full">
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>    
+      </div>
     </div>
   );
-}
-  
+};
+
 export default StudentReviews;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   User,
   BookOpen,
@@ -16,80 +16,83 @@ import {
   Database,
   Layers,
   ArrowRight,
-    FileText,
-} from 'lucide-react';
+  FileText,
+} from "lucide-react";
 
 const Wishlist = () => {
-  const [activeTab, setActiveTab] = useState('wishlist');
+  const [activeTab, setActiveTab] = useState("wishlist");
 
   const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-    { id: 'profile', label: 'My Profile', icon: User },
-    { id: 'courses', label: 'Enrolled Courses', icon: BookOpen },
-    { id: 'wishlist', label: 'Wishlist', icon: Heart },
-    { id: 'reviews', label: 'Reviews', icon: Star },
-    { id: 'quiz', label: 'My Quiz Attempts', icon: FileText },
-    { id: 'order-history', label: 'Order History', icon: Clock },
+    { id: "dashboard", label: "Dashboard", icon: BarChart3 },
+    { id: "profile", label: "My Profile", icon: User },
+    { id: "courses", label: "Enrolled Courses", icon: BookOpen },
+    { id: "wishlist", label: "Wishlist", icon: Heart },
+    { id: "reviews", label: "Reviews", icon: Star },
+    { id: "quiz", label: "My Quiz Attempts", icon: FileText },
+    { id: "order-history", label: "Order History", icon: Clock },
   ];
 
   const userActions = [
-    { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'logout', label: 'Logout', icon: LogOut },
+    { id: "settings", label: "Settings", icon: Settings },
+    { id: "logout", label: "Logout", icon: LogOut },
   ];
 
   const wishlistData = [
     {
       id: 1,
-      title: 'React Front To Back',
-      instructor: 'Brad Traversy',
+      title: "React Front To Back",
+      instructor: "Brad Traversy",
       rating: 5,
       reviews: 100,
       lessons: 50,
       students: 100,
-      price: '$60',
-      originalPrice: '$84.99',
+      price: "$60",
+      originalPrice: "$84.99",
       discount: true,
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop',
+      image:
+        "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
     },
     {
       id: 2,
-      title: 'PHP Beginner Advanced',
-      instructor: 'John Smith',
+      title: "PHP Beginner Advanced",
+      instructor: "John Smith",
       rating: 4.6,
       reviews: 21,
       lessons: 50,
       students: 100,
-      price: '$80',
-      originalPrice: '$100',
+      price: "$80",
+      originalPrice: "$100",
       discount: true,
-      image: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop',
+      image:
+        "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
     },
     {
       id: 3,
-      title: 'Angular Zero to Mastery',
-      instructor: 'Sarah Johnson',
+      title: "Angular Zero to Mastery",
+      instructor: "Sarah Johnson",
       rating: 4.9,
       reviews: 102,
       lessons: 50,
       students: 100,
-      price: '$40',
-      originalPrice: '$90',
+      price: "$40",
+      originalPrice: "$90",
       discount: true,
-      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop',
+      image:
+        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
     },
   ];
 
   return (
-    <div className="m-0 p-4 box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 to-white min-h-screen p-5">
+    <div className="m-0  box-border font-sans bg-gradient-to-b from-purple-300 via-cyan-300 to-white min-h-screen p-5">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div
           className="px-30 py-30 pt-20 relative overflow-hidden mb-17"
           style={{
             backgroundImage: `url('/Image/student.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         >
           <div className="flex flex-col lg:flex-row justify-between items-center relative z-10">
@@ -98,7 +101,9 @@ const Wishlist = () => {
                 EH
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-white mb-2">EMILY HANNAH</h1>
+                <h1 className="text-4xl font-bold text-white mb-2">
+                  EMILY HANNAH
+                </h1>
                 <div className="flex items-center space-x-6 text-white text-sm">
                   <div className="flex items-center space-x-2">
                     <BookOpen className="w-4 h-4" />
@@ -136,8 +141,8 @@ const Wishlist = () => {
                       onClick={() => setActiveTab(item.id)}
                       className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 border-r-4 ${
                         activeTab === item.id
-                          ? 'bg-indigo-50 text-indigo-700 border-indigo-500 font-semibold'
-                          : 'text-slate-600 hover:bg-slate-100 border-transparent hover:text-slate-900'
+                          ? "bg-indigo-50 text-indigo-700 border-indigo-500 font-semibold"
+                          : "text-slate-600 hover:bg-slate-100 border-transparent hover:text-slate-900"
                       }`}
                     >
                       <Icon className="w-5 h-5" />
@@ -148,7 +153,9 @@ const Wishlist = () => {
               </nav>
 
               <div className="mt-10 pt-6 border-t border-slate-200">
-                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">USER</div>
+                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">
+                  USER
+                </div>
                 <nav className="space-y-2">
                   {userActions.map((item) => {
                     const Icon = item.icon;
@@ -190,20 +197,35 @@ const Wishlist = () => {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${i < Math.floor(course.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                              className={`w-4 h-4 ${
+                                i < Math.floor(course.rating)
+                                  ? "text-yellow-400 fill-current"
+                                  : "text-gray-300"
+                              }`}
                             />
                           ))}
-                          <span className="text-sm text-gray-600 ml-2">({course.reviews} Reviews)</span>
+                          <span className="text-sm text-gray-600 ml-2">
+                            ({course.reviews} Reviews)
+                          </span>
                         </div>
-                        <h3 className="font-bold text-lg text-gray-800 mb-2">{course.title}</h3>
+                        <h3 className="font-bold text-lg text-gray-800 mb-2">
+                          {course.title}
+                        </h3>
                         <div className="flex items-center text-sm text-gray-600 mb-4">
                           <Users className="w-4 h-4 mr-1" />
-                          <span>{course.lessons} Lessons · {course.students} Students</span>
+                          <span>
+                            {course.lessons} Lessons · {course.students}{" "}
+                            Students
+                          </span>
                         </div>
                         <div className="flex items-center mb-4">
-                          <span className="text-lg font-medium text-gray-800">${course.price}</span>
+                          <span className="text-lg font-medium text-gray-800">
+                            ${course.price}
+                          </span>
                           {course.discount && (
-                            <span className="ml-2 line-through text-gray-500">${course.originalPrice}</span>
+                            <span className="ml-2 line-through text-gray-500">
+                              ${course.originalPrice}
+                            </span>
                           )}
                         </div>
                         <button className="w-full bg-blue-50 text-blue-600 py-3 rounded-xl font-medium hover:bg-blue-100 transition-colors">
