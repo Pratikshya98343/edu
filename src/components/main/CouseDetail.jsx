@@ -44,7 +44,7 @@ export default function CourseLandingPage() {
 
             {/* Instructor Info */}
             <div className="flex items-center space-x-3">
-              <img src="/image/instructor.jpg" alt="Instructor" className="w-10 h-10 rounded-full" />
+              <img src="/image/StudentIcon.png" alt="Instructor" className="w-10 h-10 rounded-full" />
               <span className="text-gray-600">By Claudia Pruitt in Designing</span>
             </div>
 
@@ -85,17 +85,12 @@ export default function CourseLandingPage() {
                   </div>
                 </div>
 
-                {/* Instructor Image with Play Button */}
                 <div className="relative hidden md:block">
                   <img 
                     src="Image/girl.png" 
                     alt="Instructor" 
                     className="w-100 h-64 object-cover rounded-lg" 
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    </div>
-                  </div>
+                  />                 
                 </div>
               </div>
 

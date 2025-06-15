@@ -675,7 +675,7 @@ const StudentProfile = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div
-          className="px-30 py-30 pt-20 relative overflow-hidden mb-17"
+          className="px-30 py-40 pt-20 relative overflow-hidden mb-17"
           style={{
             backgroundImage: `url('/Image/student.png')`,
             backgroundSize: "cover",
@@ -683,9 +683,9 @@ const StudentProfile = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="flex flex-col lg:flex-row justify-between items-center relative z-10">
-            <div className="flex items-center space-x-6 mb-10 lg:mb-0">
-              <div className="w-20 h-20 rounded-full border-4 border-white shadow-lg overflow-hidden">
+          <div className="flex flex-col lg:flex-row justify-between items-center relative z-15">
+            <div className="flex items-center space-x-6 mb-16 lg:mb-0">
+              <div className="w-25 h-25 rounded-full border-4 border-white shadow-lg overflow-hidden">
               <img 
             src="Image/StudentIcon.png"
             alt="John's Profile"
@@ -707,13 +707,6 @@ const StudentProfile = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="flex flex-col items-center space-y-4 mt-16">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 mb-10 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 hover:transform hover:-translate-y-1 shadow-lg">
-                <span>Create Link New Course</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
             </div>
           </div>
         </div>

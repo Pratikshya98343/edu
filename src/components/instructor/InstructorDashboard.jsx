@@ -85,20 +85,12 @@ const InstructorDashboard = () => {
   const navigationItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'profile', label: 'My Profile', icon: User },
-    { id: 'courses', label: 'Enrolled Courses', icon: BookOpen },
-    { id: 'wishlist', label: 'Wishlist', icon: Heart },
-    { id: 'reviews', label: 'Reviews', icon: Star },
-    { id: 'quiz', label: 'My Quiz Attempts', icon: HelpCircle },
-    { id: 'order-history', label: 'Order History', icon: ShoppingCart },
-  ];
-
-  const instructorItems = [
     { id: 'my-courses', label: 'My Courses', icon: BookOpen },
     { id: 'announcements', label: 'Announcements', icon: MessageSquare },
     { id: 'quiz-attempts', label: 'Quiz Attempts', icon: FileText },
     { id: 'assignments', label: 'Assignments', icon: List },
+    
   ];
-
   const userActions = [
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'logout', label: 'Logout', icon: LogOut },
@@ -114,7 +106,6 @@ const InstructorDashboard = () => {
     { icon: '💰', value: '25000', color: 'text-yellow-600', bg: 'from-yellow-100 to-yellow-200', iconBg: 'bg-yellow-500' },
   ];
 
-  // Sample course data
   const courses = [
     {
       title: "React Front To Back",
@@ -192,12 +183,44 @@ const InstructorDashboard = () => {
     );
   };
 
+   const my_courses = [
+    {
+      title: "React Front To Back",
+      image: "/Image/coursegirl.png", 
+      discount: "-34%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$60",
+      oldPrice: "$84.99",
+      reviews: "(100 Reviews)",
+    },
+    {
+      title: "PHP Beginner Advanced",
+      image: "/Image/education.png",
+      discount: "-20%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$80",
+      oldPrice: "$100",
+      reviews: "(21 Reviews)",
+    },
+    {
+      title: "Angular Zero to Mastery",
+      image: "/Image/web.png",
+      discount: "-54%",
+      lessons: "50 Lessons",
+      students: "100 Students",
+      price: "$40",
+      oldPrice: "$90",
+      reviews: "(102 Reviews)",
+    },
+  ];
+
   const renderSettingsPage = () => {
     return (
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-800 mb-6">Edit Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* First Name & Last Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
@@ -222,8 +245,6 @@ const InstructorDashboard = () => {
               />
             </div>
           </div>
-
-          {/* Username & Phone Number */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="userName" className="block text-sm font-medium text-gray-700 mb-1">Username</label>
@@ -248,8 +269,6 @@ const InstructorDashboard = () => {
               />
             </div>
           </div>
-
-          {/* Skill/Occupation */}
           <div>
             <label htmlFor="skillOccupation" className="block text-sm font-medium text-gray-700 mb-1">Skill / Occupation</label>
             <input
@@ -262,7 +281,6 @@ const InstructorDashboard = () => {
             />
           </div>
 
-          {/* Display Name */}
           <div>
             <label htmlFor="displayName" className="block text-sm font-medium text-gray-700 mb-1">Display Name Publicly As</label>
             <select
@@ -334,7 +352,7 @@ const InstructorDashboard = () => {
     );
   };
 
-  const renderCourseContent = () => {
+  const rendermy_CourseContent = () => {
     return (
       <div className="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-md h-200 mb-2">
         <h2 className="text-2xl font-bold mb-4 text-black">My Courses</h2>
@@ -358,10 +376,10 @@ const InstructorDashboard = () => {
         return renderDashboard();
       case 'profile':
         return renderProfileContent();
-      case 'courses':
-        return renderCourseContent();
       case 'settings':
         return renderSettingsPage();
+        case 'my-courses':
+        return rendermy_CourseContent();
       default:
         return (
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 text-center">
@@ -409,19 +427,14 @@ const InstructorDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-center space-y-4 mt-10">
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 mb-10 rounded-lg font-semibold flex items-center space-x-2 transition-all duration-300 hover:transform hover:-translate-y-1 shadow-lg">
-                <span>Create a New Course</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+
           </div>
         </div>
         <div className="flex min-h-[300px] mt-10">
           {/* Sidebar */}
           <div className="w-80 bg-slate-50 border-r border-slate-400 rounded-l-2xl">
             <div className="p-6">
-              <div className="text-slate-500 text-sm mb-6">WELCOME, RAFI!</div>
+              <div className="text-slate-500 text-sm mb-6">WELCOME,Nisha!</div>
               <nav className="space-y-2">
                 {navigationItems.map((item) => {
                   const Icon = item.icon;
@@ -441,30 +454,8 @@ const InstructorDashboard = () => {
                   );
                 })}
               </nav>
+
               <div className="mt-10 pt-6 border-t border-slate-200">
-                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">INSTRUCTOR</div>
-                <nav className="space-y-2">
-                  {instructorItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => handleNavClick(item.id)}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 border-r-4 ${
-                          activeNav === item.id
-                            ? 'bg-indigo-50 text-indigo-700 border-indigo-500 font-semibold'
-                            : 'text-slate-600 hover:bg-slate-100 border-transparent hover:text-slate-900'
-                        }`}
-                      >
-                        <Icon className="w-5 h-5" />
-                        <span>{item.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
-              <div className="mt-10 pt-6 border-t border-slate-200">
-                <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">USER</div>
                 <nav className="space-y-2">
                   {userActions.map((item) => {
                     const Icon = item.icon;

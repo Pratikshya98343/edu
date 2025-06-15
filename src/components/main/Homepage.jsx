@@ -31,8 +31,6 @@ const Homepage = () => {
     instructors: 0,
     satisfaction: 0
   });
-
-  // Animate stats on mount
   useEffect(() => {
     const animateStats = () => {
       const duration = 2000;
@@ -54,13 +52,7 @@ const Homepage = () => {
     animateStats();
   }, []);
 
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+  
 
   const testimonials = [
     {
@@ -211,21 +203,18 @@ const Homepage = () => {
                 </div>
               </div>
             </div>
-            {/* Right Content - Hero Image */}
             <div className="relative">
-              {/* Background Shapes */}
               <div className="absolute inset-0">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-300 to-pink-400 rounded-full opacity-70 transform rotate-12 animate-pulse"></div>
                 <div className="absolute top-20 right-20 w-48 h-48 bg-gradient-to-br from-blue-300 to-blue-400 rounded-full opacity-70 transform -rotate-12 animate-pulse delay-75"></div>
                 <div className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-to-br from-purple-300 to-purple-400 rounded-full opacity-70 animate-pulse delay-150"></div>
               </div>
-              {/* Main Image Container */}
+
 <div className="relative z-10 flex justify-center">
   <div className="relative">
-    {/* Woman Image Placeholder */}
     <div className="w-80 h-96 rounded-2xl overflow-hidden shadow-2xl">
       <img
-        src="Image/women.png" // Replace this with your actual image URL
+        src="Image/women.png" 
         alt="Woman"
         className="object-cover w-full h-full"
       />
@@ -268,48 +257,11 @@ const Homepage = () => {
                 </div>
               </div>
               {/* Decorative Elements */}
-              <div className="absolute top-32 left-8 text-purple-400 animate-spin-slow">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="currentColor">
-                  <path d="M20 0L24 16L40 20L24 24L20 40L16 24L0 20L16 16L20 0Z"/>
-                </svg>
-              </div>
-              <div className="absolute bottom-20 right-16 text-blue-400 animate-ping">
-                <div className="w-6 h-6 border-2 border-current rounded-full"></div>
-              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Rest of the sections (Features, Categories, Courses, Testimonials, CTA, etc.) remain unchanged */}
-      {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
-              WHY CHOOSE US
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Learn With Confidence
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide everything you need to succeed in your learning journey
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white mb-6">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* Categories Section */}
       <section id="courses" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
@@ -475,7 +427,6 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Custom Styles */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
