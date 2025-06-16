@@ -1,6 +1,6 @@
 // src/app/instructor/announcements/page.js
 "use client";
-import React from 'react';
+import React from "react";
 
 export default function InstructorAnnouncementsPage() {
   return (
