@@ -1,22 +1,90 @@
 "use client";
 import React, { useState } from "react";
-import { Search, Filter, Download, Eye, Calendar, DollarSign, Package } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Download,
+  Eye,
+  Calendar,
+  DollarSign,
+  Package,
+} from "lucide-react";
 
 const StudentOrderHistoryPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
   const orderData = [
-    { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
-    { id: '#4585', course: 'Graphic Design', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
-    { id: '#6656', course: 'Graphic Design', date: 'March 27, 2022', price: '$200.99', status: 'completed' },
-    { id: '#2045', course: 'Application Development', date: 'March 27, 2022', price: '$200.99', status: 'cancelled' },
-    { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
-    { id: '#4585', course: 'Graphic Design', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
-    { id: '#6656', course: 'Graphic Design', date: 'March 27, 2022', price: '$200.99', status: 'completed' },
-    { id: '#2045', course: 'Application Development', date: 'March 27, 2022', price: '$200.99', status: 'cancelled' },
-    { id: '#5478', course: 'App Development', date: 'January 27, 2022', price: '$100.99', status: 'completed' },
-    { id: '#4585', course: 'Graphic Design', date: 'May 27, 2022', price: '$200.99', status: 'processing' },
+    {
+      id: "#5478",
+      course: "App Development",
+      date: "January 27, 2022",
+      price: "$100.99",
+      status: "completed",
+    },
+    {
+      id: "#4585",
+      course: "Graphic Design",
+      date: "May 27, 2022",
+      price: "$200.99",
+      status: "processing",
+    },
+    {
+      id: "#6656",
+      course: "Graphic Design",
+      date: "March 27, 2022",
+      price: "$200.99",
+      status: "completed",
+    },
+    {
+      id: "#2045",
+      course: "Application Development",
+      date: "March 27, 2022",
+      price: "$200.99",
+      status: "cancelled",
+    },
+    {
+      id: "#5478",
+      course: "App Development",
+      date: "January 27, 2022",
+      price: "$100.99",
+      status: "completed",
+    },
+    {
+      id: "#4585",
+      course: "Graphic Design",
+      date: "May 27, 2022",
+      price: "$200.99",
+      status: "processing",
+    },
+    {
+      id: "#6656",
+      course: "Graphic Design",
+      date: "March 27, 2022",
+      price: "$200.99",
+      status: "completed",
+    },
+    {
+      id: "#2045",
+      course: "Application Development",
+      date: "March 27, 2022",
+      price: "$200.99",
+      status: "cancelled",
+    },
+    {
+      id: "#5478",
+      course: "App Development",
+      date: "January 27, 2022",
+      price: "$100.99",
+      status: "completed",
+    },
+    {
+      id: "#4585",
+      course: "Graphic Design",
+      date: "May 27, 2022",
+      price: "$200.99",
+      status: "processing",
+    },
   ];
 
   const getStatusStyle = (status) => {
@@ -45,17 +113,18 @@ const StudentOrderHistoryPage = () => {
     }
   };
 
-  const filteredOrders = orderData.filter(order => {
-    const matchesSearch = order.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         order.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === "all" || order.status === statusFilter;
+  const filteredOrders = orderData.filter((order) => {
+    const matchesSearch =
+      order.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === "all" || order.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
   return (
     <div className="w-full p-3 sm:p-4 lg:p-6">
       <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-        
         {/* Header */}
         <div className="px-4 sm:px-6 py-4 sm:py-6 border-b border-slate-200">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
@@ -67,7 +136,7 @@ const StudentOrderHistoryPage = () => {
                 Track your course purchases and enrollment history
               </p>
             </div>
-            
+
             {/* Action Buttons - Hidden on mobile, shown on larger screens */}
             <div className="hidden sm:flex space-x-2">
               <button className="flex items-center space-x-2 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
@@ -92,7 +161,7 @@ const StudentOrderHistoryPage = () => {
                 className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-slate-900 placeholder:text-slate-600 bg-white font-medium"
               />
             </div>
-            
+
             {/* Status Filter */}
             <div className="flex items-center space-x-2">
               <Filter className="w-4 h-4 text-slate-500" />
@@ -203,7 +272,7 @@ const StudentOrderHistoryPage = () => {
                     {getStatusIcon(order.status)} {order.status}
                   </span>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center space-x-2 text-slate-700 font-medium">
                     <Calendar className="w-4 h-4" />
@@ -214,7 +283,7 @@ const StudentOrderHistoryPage = () => {
                     <span>{order.price}</span>
                   </div>
                 </div>
-                
+
                 <div className="mt-4 flex justify-end">
                   <button className="flex items-center space-x-2 px-3 py-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors text-sm font-medium">
                     <Eye className="w-4 h-4" />
@@ -236,30 +305,12 @@ const StudentOrderHistoryPage = () => {
               No orders found
             </h3>
             <p className="text-sm sm:text-base text-slate-600">
-              {searchTerm || statusFilter !== "all" 
+              {searchTerm || statusFilter !== "all"
                 ? "Try adjusting your search or filter criteria"
                 : "You haven't made any course purchases yet"}
             </p>
           </div>
         )}
-
-        {/* Pagination - Hidden on mobile for simplicity */}
-        <div className="hidden sm:flex items-center justify-between px-6 py-4 border-t border-slate-200">
-          <div className="text-sm text-slate-700 font-medium">
-            Showing {filteredOrders.length} of {orderData.length} orders
-          </div>
-          <div className="flex space-x-2">
-            <button className="px-3 py-1 border border-slate-300 rounded text-sm hover:bg-slate-50 transition-colors text-slate-700 font-medium">
-              Previous
-            </button>
-            <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 transition-colors font-medium">
-              1
-            </button>
-            <button className="px-3 py-1 border border-slate-300 rounded text-sm hover:bg-slate-50 transition-colors text-slate-700 font-medium">
-              Next
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

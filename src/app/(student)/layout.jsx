@@ -90,29 +90,28 @@ const StudentLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-300 via-cyan-300 via-30% to-white to-50%">
-{/* Header Section */}
-<div className="relative z-30">
-  <div className="max-w-7xl mx-auto p-2 sm:p-4 lg:p-5">
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-4 sm:mb-6 lg:mb-8">
-      <div className="flex items-center space-x-6">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl sm:text-2xl flex-shrink-0">
-          {profileData.firstName.charAt(0)}{profileData.lastName.charAt(0)}
-        </div>
-        <div className="flex-1">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
-            {profileData.firstName} {profileData.lastName}
-          </h1>
+      {/* Header Section */}
+      <div className="relative z-30">
+        <div className="max-w-7xl mx-auto p-2 sm:p-4 lg:p-5">
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-4 sm:mb-6 lg:mb-8">
+            <div className="flex items-center space-x-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl sm:text-2xl flex-shrink-0">
+                {profileData.firstName.charAt(0)}{profileData.lastName.charAt(0)}
+              </div>
+              <div className="flex-1">
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
+                  {profileData.firstName} {profileData.lastName}
+                </h1>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
 
       {/* Mobile Menu Button */}
       <button
         onClick={toggleSidebar}
-        className="lg:hidden fixed top-4 left-4 z-50 bg-white p-2 rounded-lg shadow-lg border border-slate-200"
+        className="lg:hidden fixed top-4 left-4 z-[60] bg-white p-2 rounded-lg shadow-lg border border-slate-200"
       >
         {isSidebarOpen ? (
           <X className="w-6 h-6 text-slate-600" />
@@ -125,15 +124,15 @@ const StudentLayout = ({ children }) => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-5">
         <div className="flex flex-col lg:flex-row min-h-[600px] relative">
           
-          {/* Sidebar Overlay for Mobile */}
+          {/* Sidebar Overlay for Mobile - FIXED */}
           {isSidebarOpen && (
             <div
-              className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+              className="lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-[45]"
               onClick={closeSidebar}
             />
           )}
 
-          {/* Sidebar */}
+          {/* Sidebar - FIXED */}
           <div
             className={`
               fixed lg:sticky lg:top-0
@@ -142,7 +141,7 @@ const StudentLayout = ({ children }) => {
               w-80 max-w-[85vw] lg:w-80 lg:max-w-none
               bg-white rounded-r-xl lg:rounded-l-xl lg:rounded-r-none
               border-r lg:border border-slate-200 shadow-lg lg:shadow-sm
-              transform transition-transform duration-300 ease-in-out z-50 lg:z-auto
+              transform transition-transform duration-300 ease-in-out z-[50] lg:z-auto
               ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}
           >

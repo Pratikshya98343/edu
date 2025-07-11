@@ -1,27 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { 
-  Search, 
-  Filter, 
-  Star, 
-  Users, 
-  Clock, 
-  BookOpen, 
+import {
+  Search,
+  Filter,
+  Star,
   Heart,
   ShoppingCart,
   Play,
-  ChevronDown
+  ChevronDown,
 } from "lucide-react";
 
 const BrowseCoursesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedLevel, setSelectedLevel] = useState("all");
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [sortBy, setSortBy] = useState("popular");
 
-  // Sample course data - replace with your actual data
-  const allCourses = [
+  const [courses, setCourses] = useState([
     {
       id: 1,
       title: "Complete Web Development Bootcamp",
@@ -31,14 +26,13 @@ const BrowseCoursesPage = () => {
       students: 15420,
       price: 89.99,
       originalPrice: 199.99,
-      level: "Beginner",
       category: "Web Development",
       duration: "65 hours",
       lessons: 120,
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
-      description: "Learn web development from scratch with HTML, CSS, JavaScript, React, and more.",
-      bestseller: true,
-      isEnrolled: false,
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
+      description:
+        "Learn web development from scratch with HTML, CSS, JavaScript, React, and more.",
       inWishlist: false,
     },
     {
@@ -50,14 +44,13 @@ const BrowseCoursesPage = () => {
       students: 8750,
       price: 79.99,
       originalPrice: 149.99,
-      level: "Intermediate",
       category: "Data Science",
       duration: "45 hours",
       lessons: 85,
-      image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop",
-      description: "Master Python for data analysis, visualization, and machine learning.",
-      bestseller: false,
-      isEnrolled: false,
+      image:
+        "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop",
+      description:
+        "Master Python for data analysis, visualization, and machine learning.",
       inWishlist: true,
     },
     {
@@ -69,18 +62,16 @@ const BrowseCoursesPage = () => {
       students: 6890,
       price: 0,
       originalPrice: 0,
-      level: "Beginner",
       category: "Design",
       duration: "30 hours",
       lessons: 60,
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
-      description: "Learn modern UI/UX design principles and create stunning user interfaces.",
-      bestseller: false,
-      isEnrolled: true,
+      image:
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
+      description:
+        "Learn modern UI/UX design principles and create stunning user interfaces.",
       inWishlist: false,
     },
-    // Add more courses as needed
-  ];
+  ]);
 
   const categories = [
     { value: "all", label: "All Categories" },
@@ -89,13 +80,6 @@ const BrowseCoursesPage = () => {
     { value: "design", label: "Design" },
     { value: "mobile-development", label: "Mobile Development" },
     { value: "business", label: "Business" },
-  ];
-
-  const levels = [
-    { value: "all", label: "All Levels" },
-    { value: "beginner", label: "Beginner" },
-    { value: "intermediate", label: "Intermediate" },
-    { value: "advanced", label: "Advanced" },
   ];
 
   const priceRanges = [
@@ -107,29 +91,38 @@ const BrowseCoursesPage = () => {
     { value: "over-100", label: "Over $100" },
   ];
 
-  const filteredCourses = allCourses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || 
-                           course.category.toLowerCase().replace(/\s+/g, '-') === selectedCategory;
-    const matchesLevel = selectedLevel === "all" || 
-                        course.level.toLowerCase() === selectedLevel;
-    const matchesPrice = selectedPrice === "all" || 
-                        (selectedPrice === "free" && course.price === 0) ||
-                        (selectedPrice === "paid" && course.price > 0) ||
-                        (selectedPrice === "under-50" && course.price < 50) ||
-                        (selectedPrice === "50-100" && course.price >= 50 && course.price <= 100) ||
-                        (selectedPrice === "over-100" && course.price > 100);
-    
-    return matchesSearch && matchesCategory && matchesLevel && matchesPrice;
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "all" ||
+      course.category.toLowerCase().replace(/\s+/g, "-") === selectedCategory;
+    const matchesPrice =
+      selectedPrice === "all" ||
+      (selectedPrice === "free" && course.price === 0) ||
+      (selectedPrice === "paid" && course.price > 0) ||
+      (selectedPrice === "under-50" && course.price < 50) ||
+      (selectedPrice === "50-100" &&
+        course.price >= 50 &&
+        course.price <= 100) ||
+      (selectedPrice === "over-100" && course.price > 100);
+
+    return matchesSearch && matchesCategory && matchesPrice;
   });
 
   const handleAddToWishlist = (courseId) => {
-    console.log("Add to wishlist:", courseId);
-  };
+    setCourses((prevCourses) =>
+      prevCourses.map((course) =>
+        course.id === courseId
+          ? { ...course, inWishlist: !course.inWishlist }
+          : course
+      )
+    );
 
-  const handleEnroll = (courseId) => {
-    console.log("Enroll in course:", courseId);
+    const course = courses.find((c) => c.id === courseId);
+    const action = course.inWishlist ? "removed from" : "added to";
+    console.log(`Course ${action} wishlist:`, courseId);
   };
 
   const handleAddToCart = (courseId) => {
@@ -139,7 +132,6 @@ const BrowseCoursesPage = () => {
   return (
     <div className="w-full p-3 sm:p-4 lg:p-6">
       <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-        
         {/* Header */}
         <div className="px-4 sm:px-6 py-4 sm:py-6 border-b border-slate-200 bg-gradient-to-r from-blue-50 to-purple-50">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
@@ -152,7 +144,7 @@ const BrowseCoursesPage = () => {
                 Discover new skills and advance your career
               </p>
             </div>
-            
+
             <div className="text-sm text-slate-600">
               {filteredCourses.length} courses found
             </div>
@@ -162,7 +154,6 @@ const BrowseCoursesPage = () => {
         {/* Search and Filters */}
         <div className="px-4 sm:px-6 py-4 border-b border-slate-200 bg-slate-50">
           <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
-            {/* Search */}
             <div className="relative flex-1 lg:max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 w-4 h-4" />
               <input
@@ -173,36 +164,29 @@ const BrowseCoursesPage = () => {
                 className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-slate-900 placeholder:text-slate-600 bg-white"
               />
             </div>
-            
-            {/* Filters */}
+
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 font-medium"
               >
-                {categories.map(cat => (
-                  <option key={cat.value} value={cat.value}>{cat.label}</option>
+                {categories.map((cat) => (
+                  <option key={cat.value} value={cat.value}>
+                    {cat.label}
+                  </option>
                 ))}
               </select>
-              
-              <select
-                value={selectedLevel}
-                onChange={(e) => setSelectedLevel(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 font-medium"
-              >
-                {levels.map(level => (
-                  <option key={level.value} value={level.value}>{level.label}</option>
-                ))}
-              </select>
-              
+
               <select
                 value={selectedPrice}
                 onChange={(e) => setSelectedPrice(e.target.value)}
                 className="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 font-medium"
               >
-                {priceRanges.map(price => (
-                  <option key={price.value} value={price.value}>{price.label}</option>
+                {priceRanges.map((price) => (
+                  <option key={price.value} value={price.value}>
+                    {price.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -218,44 +202,35 @@ const BrowseCoursesPage = () => {
                   key={course.id}
                   className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
                 >
-                  {/* Course Image */}
                   <div className="relative">
                     <img
                       src={course.image}
                       alt={course.title}
                       className="w-full h-36 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    
-                    {/* Badges */}
-                    <div className="absolute top-2 left-2 flex flex-col space-y-1">
-                      {course.bestseller && (
-                        <span className="bg-orange-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                          Bestseller
-                        </span>
-                      )}
-                      {course.price === 0 && (
-                        <span className="bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                          Free
-                        </span>
-                      )}
-                    </div>
-                    
-                    {/* Wishlist Button */}
+
                     <button
                       onClick={() => handleAddToWishlist(course.id)}
-                      className={`absolute top-2 right-2 p-2 rounded-full transition-colors ${
+                      className={`absolute top-2 right-2 p-2 rounded-full transition-all duration-200 transform hover:scale-110 ${
                         course.inWishlist
-                          ? 'bg-pink-500 text-white'
-                          : 'bg-white/80 text-gray-600 hover:bg-white'
+                          ? "bg-pink-500 text-white shadow-lg"
+                          : "bg-white/80 text-gray-600 hover:bg-white hover:text-pink-500"
                       }`}
+                      title={
+                        course.inWishlist
+                          ? "Remove from wishlist"
+                          : "Add to wishlist"
+                      }
                     >
-                      <Heart className="w-4 h-4" />
+                      <Heart
+                        className={`w-4 h-4 transition-all duration-200 ${
+                          course.inWishlist ? "fill-current" : ""
+                        }`}
+                      />
                     </button>
                   </div>
 
-                  {/* Course Content */}
                   <div className="p-4">
-                    {/* Rating */}
                     <div className="flex items-center space-x-1 mb-2">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
@@ -274,37 +249,16 @@ const BrowseCoursesPage = () => {
                       </span>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="font-semibold text-sm sm:text-base text-gray-800 mb-2 line-clamp-2">
+                    <h3 className="font-semibold text-sm sm:text-base text-gray-800 mb-3 line-clamp-2">
                       {course.title}
                     </h3>
 
-                    {/* Instructor */}
-                    <p className="text-xs sm:text-sm text-gray-600 mb-2">
-                      by {course.instructor}
-                    </p>
-
-                    {/* Course Details */}
-                    <div className="flex items-center justify-between text-xs text-gray-600 mb-3">
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3" />
-                        <span>{course.duration}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <BookOpen className="w-3 h-3" />
-                        <span>{course.lessons} lessons</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-3 h-3" />
-                        <span>{course.students.toLocaleString()}</span>
-                      </div>
-                    </div>
-
-                    {/* Price */}
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-center mb-3">
                       <div className="flex items-center space-x-2">
                         {course.price === 0 ? (
-                          <span className="text-lg font-bold text-green-600">Free</span>
+                          <span className="text-lg font-bold text-green-600">
+                            Free
+                          </span>
                         ) : (
                           <>
                             <span className="text-lg font-bold text-gray-800">
@@ -318,40 +272,22 @@ const BrowseCoursesPage = () => {
                           </>
                         )}
                       </div>
-                      <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        {course.level}
-                      </span>
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="space-y-2">
-                      {course.isEnrolled ? (
-                        <button className="w-full bg-green-50 text-green-600 py-2 rounded-lg font-medium text-sm">
-                          ✓ Enrolled
-                        </button>
-                      ) : course.price === 0 ? (
-                        <button
-                          onClick={() => handleEnroll(course.id)}
-                          className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm"
-                        >
-                          Enroll Now
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => handleAddToCart(course.id)}
-                          className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-sm"
-                        >
-                          <ShoppingCart className="w-4 h-4" />
-                          <span>Add to Cart</span>
-                        </button>
-                      )}
+                      <button
+                        onClick={() => handleAddToCart(course.id)}
+                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-sm"
+                      >
+                        <ShoppingCart className="w-4 h-4" />
+                        <span>Add to Cart</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            /* Empty State */
             <div className="text-center py-12">
               <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-semibold text-gray-800 mb-2">

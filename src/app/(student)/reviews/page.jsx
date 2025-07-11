@@ -111,13 +111,7 @@ const StudentReviewsPage = () => {
               </p>
             </div>
             
-            <div className="flex items-center space-x-2">
-              <button className="flex items-center space-x-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm">
-                <Plus className="w-4 h-4" />
-                <span className="hidden sm:inline">Add Review</span>
-                <span className="sm:hidden">Add</span>
-              </button>
-            </div>
+
           </div>
         </div>
 
@@ -211,12 +205,7 @@ const StudentReviewsPage = () => {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => handleEditReview(review.id)}
-                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      >
-                        <Edit3 className="w-4 h-4" />
-                      </button>
+
                       <button
                         onClick={() => handleDeleteReview(review.id)}
                         className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
