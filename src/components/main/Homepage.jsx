@@ -114,8 +114,6 @@ const Homepage = () => {
       instructor: "John Doe",
       rating: 4.9,
       students: 12500,
-      price: 199,
-      originalPrice: 299,
       image: "🌐",
       duration: "40 hours",
       level: "Beginner to Advanced"
@@ -125,8 +123,6 @@ const Homepage = () => {
       instructor: "Jane Smith",
       rating: 4.8,
       students: 8900,
-      price: 179,
-      originalPrice: 249,
       image: "⚛️",
       duration: "35 hours",
       level: "Intermediate"
@@ -136,8 +132,6 @@ const Homepage = () => {
       instructor: "Mike Johnson",
       rating: 4.9,
       students: 6700,
-      price: 189,
-      originalPrice: 279,
       image: "📱",
       duration: "30 hours",
       level: "Beginner"
@@ -354,12 +348,8 @@ const Homepage = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <span className="text-2xl font-bold text-purple-600">${course.price}</span>
-                      <span className="text-lg text-gray-400 line-through">${course.originalPrice}</span>
+
                     </div>
-                    <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                      Enroll Now
-                    </button>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,11 @@
 import StudentDashboardPage from "../(student)/dashboard/page";
 
 const StudentRootPage = () => {
-  return <StudentDashboardPage />;
+  return (
+    <div className="w-full">
+      <StudentDashboardPage />
+    </div>
+  );
 };
 
 export default StudentRootPage;

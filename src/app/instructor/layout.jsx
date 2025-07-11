@@ -36,12 +36,6 @@ const navigationItems = [
     href: "/instructor/my-courses",
   },
   {
-    id: "announcements",
-    label: "Announcements",
-    icon: MessageSquare,
-    href: "/instructor/announcements",
-  },
-  {
     id: "quiz-attempts",
     label: "Quiz Attempts",
     icon: FileText,
