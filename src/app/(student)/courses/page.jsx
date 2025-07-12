@@ -19,7 +19,7 @@ const StudentCoursesPage = () => {
       reviews: 102,
       lessons: 45,
       duration: "12h 30m",
-      image: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       color: "from-blue-500 to-purple-600",
     },
     {
@@ -30,7 +30,7 @@ const StudentCoursesPage = () => {
       reviews: 21,
       lessons: 52,
       duration: "18h 45m",
-      image: "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
       color: "from-purple-500 to-pink-600",
     },
     {
@@ -41,7 +41,7 @@ const StudentCoursesPage = () => {
       reviews: 102,
       lessons: 68,
       duration: "25h 15m",
-      image: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg",
+      image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
       color: "from-green-500 to-teal-600",
     },
   ];
@@ -131,7 +131,7 @@ const StudentCoursesPage = () => {
                             e.target.nextSibling.style.display = 'flex';
                           }}
                         />
-                        <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center text-gray-600 font-bold text-lg">
+                        <div className="hidden w-full h-full bg-gray-200 rounded-lg items-center justify-center text-gray-600 font-bold text-lg">
                           {course.title.split(' ')[0].charAt(0)}
                         </div>
                       </div>

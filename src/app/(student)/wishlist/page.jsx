@@ -3,10 +3,6 @@ import React, { useState } from "react";
 import { Star, Users, Heart, ShoppingCart, Trash2, Filter, Search, BookOpen, Clock, DollarSign } from "lucide-react";
 
 const StudentWishlistPage = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("newest");
-  const [selectedItems, setSelectedItems] = useState([]);
-
   const wishlistData = [
     {
       id: 1,
@@ -78,50 +74,12 @@ const StudentWishlistPage = () => {
     },
   ];
 
-  const filteredWishlist = wishlistData.filter(course =>
-    course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   const handleRemoveFromWishlist = (courseId) => {
     console.log("Remove from wishlist:", courseId);
   };
 
   const handleAddToCart = (courseId) => {
     console.log("Add to cart:", courseId);
-  };
-
-  const handleSelectItem = (courseId) => {
-    setSelectedItems(prev => 
-      prev.includes(courseId) 
-        ? prev.filter(id => id !== courseId)
-        : [...prev, courseId]
-    );
-  };
-
-  const calculateSavings = (price, originalPrice) => {
-    return Math.round(((originalPrice - price) / originalPrice) * 100);
-  };
-
-  const renderStars = (rating) => {
-    return (
-      <div className="flex items-center">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            className={`w-4 h-4 ${
-              i < Math.floor(rating)
-                ? "text-yellow-400 fill-current"
-                : "text-gray-300"
-            }`}
-          />
-        ))}
-        <span className="text-sm text-gray-600 ml-2">
-          {rating} ({reviews} reviews)
-        </span>
-      </div>
-    );
   };
 
   return (
@@ -137,148 +95,87 @@ const StudentWishlistPage = () => {
                 <span>My Wishlist</span>
               </h2>
               <p className="text-sm sm:text-base text-slate-600 mt-1">
-                {filteredWishlist.length} courses saved for later
+                {wishlistData.length} courses saved for later
               </p>
-            </div>
-            
-            <div className="flex items-center space-x-2">
-              {selectedItems.length > 0 && (
-                <button className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm">
-                  <ShoppingCart className="w-4 h-4" />
-                  <span>Add Selected ({selectedItems.length})</span>
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Search and Filter Bar */}
-        <div className="px-4 sm:px-6 py-4 border-b border-slate-200 bg-slate-50">
-          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-            {/* Search */}
-            <div className="relative flex-1 sm:max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search wishlist..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-sm"
-              />
-            </div>
-            
-            {/* Sort */}
-            <div className="flex items-center space-x-2">
-              <Filter className="w-4 h-4 text-slate-400" />
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 text-sm bg-white"
-              >
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-              </select>
             </div>
           </div>
         </div>
 
         {/* Wishlist Grid */}
         <div className="p-4 sm:p-6">
-          {filteredWishlist.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-              {filteredWishlist.map((course) => (
+          {wishlistData.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {wishlistData.map((course) => (
                 <div
                   key={course.id}
-                  className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group border border-slate-100"
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 group border border-slate-100 max-w-sm mx-auto w-full"
                 >
-                  {/* Course Image */}
-                  <div className="relative">
+                  {/* Course Image - Fixed Height */}
+                  <div className="relative h-48">
                     <img
                       src={course.image}
                       alt={course.title}
-                      className="w-full h-36 sm:h-44 lg:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     
-                    {/* Discount Badge */}
-                    {course.discount && (
-                      <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
-                        {calculateSavings(course.price, course.originalPrice)}% OFF
-                      </div>
-                    )}
-                    
-                    {/* Wishlist Actions */}
-                    <div className="absolute top-2 right-2 flex space-x-1">
-                      <button
-                        onClick={() => handleSelectItem(course.id)}
-                        className={`p-2 rounded-full transition-colors ${
-                          selectedItems.includes(course.id)
-                            ? 'bg-pink-500 text-white'
-                            : 'bg-white/80 text-gray-600 hover:bg-white'
-                        }`}
-                      >
-                        <Heart className="w-4 h-4" />
-                      </button>
+                    {/* Remove Button Only */}
+                    <div className="absolute top-3 right-3">
                       <button
                         onClick={() => handleRemoveFromWishlist(course.id)}
-                        className="p-2 bg-white/80 text-gray-600 hover:bg-white hover:text-red-500 rounded-full transition-colors"
+                        className="p-2 bg-white/90 text-gray-600 hover:bg-white hover:text-red-500 rounded-full transition-colors"
+                        title="Remove from wishlist"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
 
-                  {/* Course Content */}
-                  <div className="p-4 sm:p-5 lg:p-6">
+                  {/* Course Content - Fixed Structure */}
+                  <div className="p-5">
                     {/* Rating */}
-                    <div className="flex items-center space-x-1 mb-3">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-3 h-3 sm:w-4 sm:h-4 ${
-                            i < Math.floor(course.rating)
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                      <span className="text-xs sm:text-sm text-gray-600 ml-1">
+                    <div className="flex items-center mb-3">
+                      <div className="flex items-center">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${
+                              i < Math.floor(course.rating)
+                                ? "text-yellow-400 fill-current"
+                                : "text-gray-300"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-600 ml-2">
                         {course.rating} ({course.reviews})
                       </span>
                     </div>
 
-                    {/* Title */}
-                    <h3 className="font-bold text-base sm:text-lg text-gray-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    {/* Title - Fixed Height */}
+                    <h3 className="font-bold text-lg text-gray-800 mb-2 line-clamp-2 h-14 group-hover:text-blue-600 transition-colors">
                       {course.title}
                     </h3>
 
                     {/* Instructor */}
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 mb-4">
                       by {course.instructor}
                     </p>
 
-                    {/* Course Details */}
-                    <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 mb-4">
+                    {/* Course Details - Simplified */}
+                    <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                       <div className="flex items-center space-x-1">
-                        <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span>{course.lessons} lessons</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+                        <Clock className="w-4 h-4" />
                         <span>{course.duration}</span>
                       </div>
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-                        <span>{course.students}</span>
-                      </div>
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                        {course.level}
+                      </span>
                     </div>
 
                     {/* Price */}
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-2">
-                        <span className="text-lg sm:text-xl font-bold text-gray-800">
+                        <span className="text-xl font-bold text-gray-800">
                           ${course.price}
                         </span>
                         {course.discount && (
@@ -287,24 +184,16 @@ const StudentWishlistPage = () => {
                           </span>
                         )}
                       </div>
-                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                        {course.level}
-                      </span>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex space-x-2">
-                      <button
-                        onClick={() => handleAddToCart(course.id)}
-                        className="flex-1 bg-blue-600 text-white py-2 sm:py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2 text-sm sm:text-base"
-                      >
-                        <ShoppingCart className="w-4 h-4" />
-                        <span>Add to Cart</span>
-                      </button>
-                      <button className="px-3 py-2 sm:py-3 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-50 transition-colors">
-                        <BookOpen className="w-4 h-4" />
-                      </button>
-                    </div>
+                    {/* Action Button - Single Button */}
+                    <button
+                      onClick={() => handleAddToCart(course.id)}
+                      className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      <span>Add to Cart</span>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -319,9 +208,7 @@ const StudentWishlistPage = () => {
                 Your wishlist is empty
               </h3>
               <p className="text-sm sm:text-base text-slate-600 mb-6">
-                {searchTerm 
-                  ? "No courses match your search criteria"
-                  : "Start adding courses you're interested in to your wishlist"}
+                Start adding courses you're interested in to your wishlist
               </p>
               <button className="px-6 py-3 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors font-medium">
                 Browse Courses
@@ -331,16 +218,16 @@ const StudentWishlistPage = () => {
         </div>
 
         {/* Summary Footer */}
-        {filteredWishlist.length > 0 && (
+        {wishlistData.length > 0 && (
           <div className="px-4 sm:px-6 py-4 sm:py-6 bg-slate-50 border-t border-slate-200">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
               <div className="text-sm text-slate-600">
                 Total value: <span className="font-semibold text-slate-800">
-                  ${filteredWishlist.reduce((sum, course) => sum + course.originalPrice, 0).toFixed(2)}
+                  ${wishlistData.reduce((sum, course) => sum + course.originalPrice, 0).toFixed(2)}
                 </span>
                 {" "}
                 <span className="text-green-600">
-                  (Save ${filteredWishlist.reduce((sum, course) => sum + (course.originalPrice - course.price), 0).toFixed(2)})
+                  (Save ${wishlistData.reduce((sum, course) => sum + (course.originalPrice - course.price), 0).toFixed(2)})
                 </span>
               </div>
               <button className="w-full sm:w-auto px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center space-x-2">

@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   Search,
+  ShoppingCart,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -52,6 +53,7 @@ const StudentLayout = ({ children }) => {
       href: "/courses",
     },
     { id: "wishlist", label: "Wishlist", icon: Heart, href: "/wishlist" },
+    { id: "cart", label: "Cart", icon: ShoppingCart, href: "/cart" },
     { id: "reviews", label: "Reviews", icon: Star, href: "/reviews" },
     {
       id: "order-history",
@@ -124,7 +126,7 @@ const StudentLayout = ({ children }) => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-5">
         <div className="flex flex-col lg:flex-row min-h-[600px] relative">
           
-          {/* Sidebar Overlay for Mobile - FIXED */}
+          {/* Sidebar Overlay for Mobile */}
           {isSidebarOpen && (
             <div
               className="lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-[45]"
@@ -132,7 +134,7 @@ const StudentLayout = ({ children }) => {
             />
           )}
 
-          {/* Sidebar - FIXED */}
+          {/* Sidebar */}
           <div
             className={`
               fixed lg:sticky lg:top-0

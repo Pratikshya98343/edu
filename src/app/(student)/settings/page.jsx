@@ -1,26 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import {
-  Lock,
   User,
-  Bell,
-  Globe,
   Shield,
   Eye,
   EyeOff,
   Save,
-  Smartphone,
-  Mail,
-  Moon,
-  Sun,
-  Monitor,
   Check,
   X,
-  AlertTriangle,
   Key,
   Settings as SettingsIcon,
-  Download,
-  Trash2,
   HelpCircle,
 } from "lucide-react";
 
@@ -29,8 +18,6 @@ const StudentSettingsPage = () => {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [theme, setTheme] = useState("system");
-  const [language, setLanguage] = useState("en");
   
   // Password form state
   const [passwordForm, setPasswordForm] = useState({
@@ -39,37 +26,15 @@ const StudentSettingsPage = () => {
     confirmPassword: "",
   });
 
-  // Settings state
-  const [settings, setSettings] = useState({
-    emailNotifications: true,
-    pushNotifications: false,
-    courseReminders: true,
-    marketingEmails: false,
-    twoFactorAuth: false,
-    profileVisibility: "public",
-    autoSave: true,
-    dataCollection: true,
-  });
-
   const tabs = [
     { id: "account", label: "Account", icon: User },
     { id: "security", label: "Security", icon: Shield },
-    { id: "notifications", label: "Notifications", icon: Bell },
-    { id: "preferences", label: "Preferences", icon: SettingsIcon },
-    { id: "privacy", label: "Privacy", icon: Lock },
   ];
 
   const handlePasswordChange = (field, value) => {
     setPasswordForm(prev => ({
       ...prev,
       [field]: value,
-    }));
-  };
-
-  const handleSettingChange = (setting, value) => {
-    setSettings(prev => ({
-      ...prev,
-      [setting]: value,
     }));
   };
 
@@ -89,7 +54,7 @@ const StudentSettingsPage = () => {
   };
 
   const handleSaveSettings = () => {
-    console.log("Settings saved:", settings);
+    console.log("Settings saved");
     alert("Settings saved successfully!");
   };
 
@@ -147,26 +112,6 @@ const StudentSettingsPage = () => {
               defaultValue="+1-202-555-0174"
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 placeholder:text-slate-500 bg-white font-medium"
             />
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Profile Settings</h3>
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Profile Visibility
-            </label>
-            <select
-              value={settings.profileVisibility}
-              onChange={(e) => handleSettingChange("profileVisibility", e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 bg-white font-medium"
-            >
-              <option value="public">Public</option>
-              <option value="private">Private</option>
-              <option value="friends">Friends Only</option>
-            </select>
           </div>
         </div>
       </div>
@@ -287,236 +232,6 @@ const StudentSettingsPage = () => {
           </button>
         </form>
       </div>
-
-      {/* Two-Factor Authentication */}
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center space-x-2">
-          <Smartphone className="w-5 h-5" />
-          <span>Two-Factor Authentication</span>
-        </h3>
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-          <div>
-            <p className="font-medium text-gray-800">Enable 2FA</p>
-            <p className="text-sm text-gray-600">Add an extra layer of security to your account</p>
-          </div>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              checked={settings.twoFactorAuth}
-              onChange={(e) => handleSettingChange("twoFactorAuth", e.target.checked)}
-              className="sr-only peer"
-            />
-            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-          </label>
-        </div>
-      </div>
-
-      {/* Login Sessions */}
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Active Sessions</h3>
-        <div className="space-y-3">
-          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-            <div className="flex items-center space-x-3">
-              <Monitor className="w-5 h-5 text-gray-500" />
-              <div>
-                <p className="font-medium text-gray-800">Current Session</p>
-                <p className="text-sm text-gray-600">Chrome on Windows • New York, NY</p>
-              </div>
-            </div>
-            <span className="text-sm text-green-600 font-medium">Active</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderNotificationsTab = () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Email Notifications</h3>
-        <div className="space-y-4">
-          {[
-            { key: "emailNotifications", label: "General Email Notifications", desc: "Receive important updates via email" },
-            { key: "courseReminders", label: "Course Reminders", desc: "Get reminded about upcoming lessons and deadlines" },
-            { key: "marketingEmails", label: "Marketing Emails", desc: "Receive promotional offers and course recommendations" },
-          ].map((item) => (
-            <div key={item.key} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-              <div>
-                <p className="font-medium text-gray-800">{item.label}</p>
-                <p className="text-sm text-gray-600">{item.desc}</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings[item.key]}
-                  onChange={(e) => handleSettingChange(item.key, e.target.checked)}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Push Notifications</h3>
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-          <div>
-            <p className="font-medium text-gray-800">Browser Notifications</p>
-            <p className="text-sm text-gray-600">Receive notifications in your browser</p>
-          </div>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              checked={settings.pushNotifications}
-              onChange={(e) => handleSettingChange("pushNotifications", e.target.checked)}
-              className="sr-only peer"
-            />
-            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderPreferencesTab = () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Appearance</h3>
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-3">Theme</label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {[
-                { value: "light", label: "Light", icon: Sun },
-                { value: "dark", label: "Dark", icon: Moon },
-                { value: "system", label: "System", icon: Monitor },
-              ].map((option) => {
-                const Icon = option.icon;
-                return (
-                  <button
-                    key={option.value}
-                    onClick={() => setTheme(option.value)}
-                    className={`p-4 border-2 rounded-lg flex items-center space-x-3 transition-colors ${
-                      theme === option.value
-                        ? "border-blue-500 bg-blue-50 text-blue-700"
-                        : "border-gray-200 hover:border-gray-300"
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span className="font-medium">{option.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Language & Region</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Language</label>
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 bg-white font-medium"
-            >
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-              <option value="ko">Korean</option>
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">Timezone</label>
-            <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-slate-900 bg-white font-medium">
-              <option value="UTC-5">Eastern Time (UTC-5)</option>
-              <option value="UTC-6">Central Time (UTC-6)</option>
-              <option value="UTC-7">Mountain Time (UTC-7)</option>
-              <option value="UTC-8">Pacific Time (UTC-8)</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Learning Preferences</h3>
-        <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-          <div>
-            <p className="font-medium text-gray-800">Auto-save Progress</p>
-            <p className="text-sm text-gray-600">Automatically save your course progress</p>
-          </div>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              checked={settings.autoSave}
-              onChange={(e) => handleSettingChange("autoSave", e.target.checked)}
-              className="sr-only peer"
-            />
-            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-          </label>
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderPrivacyTab = () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Data & Privacy</h3>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div>
-              <p className="font-medium text-gray-800">Data Collection</p>
-              <p className="text-sm text-gray-600">Allow collection of usage data to improve your experience</p>
-            </div>
-            <label className="relative inline-flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                checked={settings.dataCollection}
-                onChange={(e) => handleSettingChange("dataCollection", e.target.checked)}
-                className="sr-only peer"
-              />
-              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t pt-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Management</h3>
-        <div className="space-y-3">
-          <button className="w-full sm:w-auto flex items-center space-x-2 px-4 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors">
-            <Download className="w-4 h-4" />
-            <span>Download My Data</span>
-          </button>
-          <button className="w-full sm:w-auto flex items-center space-x-2 px-4 py-3 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors">
-            <Trash2 className="w-4 h-4" />
-            <span>Delete Account</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="border-t pt-6">
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <div className="flex items-start space-x-3">
-            <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
-            <div>
-              <h4 className="font-medium text-yellow-800">Privacy Notice</h4>
-              <p className="text-sm text-yellow-700 mt-1">
-                Your privacy is important to us. Review our privacy policy to understand how we handle your data.
-              </p>
-              <button className="text-sm text-yellow-800 underline hover:no-underline mt-2">
-                Read Privacy Policy
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 
@@ -526,12 +241,6 @@ const StudentSettingsPage = () => {
         return renderAccountTab();
       case "security":
         return renderSecurityTab();
-      case "notifications":
-        return renderNotificationsTab();
-      case "preferences":
-        return renderPreferencesTab();
-      case "privacy":
-        return renderPrivacyTab();
       default:
         return renderAccountTab();
     }
@@ -554,12 +263,6 @@ const StudentSettingsPage = () => {
               </p>
             </div>
             
-            <div className="flex items-center space-x-2">
-              <button className="flex items-center space-x-2 px-3 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors text-sm">
-                <HelpCircle className="w-4 h-4" />
-                <span className="hidden sm:inline">Help</span>
-              </button>
-            </div>
           </div>
         </div>
 
