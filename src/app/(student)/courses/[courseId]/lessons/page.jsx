@@ -39,7 +39,7 @@ const CourseLessonsPage = () => {
   const [currentLesson, setCurrentLesson] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const [activeTab, setActiveTab] = useState('lessons'); // 'lessons' or 'assignments'
+  const [activeTab, setActiveTab] = useState('lessons'); // 'lessons', 'assignments', or 'notes'
   const [completedLessons, setCompletedLessons] = useState([]);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -132,7 +132,7 @@ const CourseLessonsPage = () => {
               "Implement useState and useEffect hooks",
               "Add local storage persistence",
               "Include proper error handling"
-            ]
+            ],
           },
           {
             id: 2,
@@ -167,6 +167,48 @@ const CourseLessonsPage = () => {
               "Demonstrate useEffect cleanup",
               "Include performance optimizations"
             ]
+          }
+        ],
+        notes: [
+          {
+            id: 1,
+            title: "Course Syllabus",
+            description: "Complete course outline and grading criteria",
+            fileName: "react-syllabus.pdf",
+            fileSize: "245 KB",
+            uploadedAt: "2024-01-15",
+            downloadUrl: "#",
+            type: "pdf"
+          },
+          {
+            id: 2,
+            title: "React Cheat Sheet",
+            description: "Quick reference for React hooks and components",
+            fileName: "react-cheatsheet.pdf",
+            fileSize: "180 KB",
+            uploadedAt: "2024-01-20",
+            downloadUrl: "#",
+            type: "pdf"
+          },
+          {
+            id: 3,
+            title: "Project Requirements",
+            description: "Detailed requirements for final project",
+            fileName: "project-requirements.docx",
+            fileSize: "95 KB",
+            uploadedAt: "2024-02-01",
+            downloadUrl: "#",
+            type: "doc"
+          },
+          {
+            id: 4,
+            title: "Code Examples",
+            description: "Sample code files for all lessons",
+            fileName: "react-examples.zip",
+            fileSize: "1.2 MB",
+            uploadedAt: "2024-01-25",
+            downloadUrl: "#",
+            type: "zip"
           }
         ]
       },
@@ -247,6 +289,28 @@ const CourseLessonsPage = () => {
               "Add user authentication"
             ]
           }
+        ],
+        notes: [
+          {
+            id: 1,
+            title: "PHP Documentation",
+            description: "Official PHP documentation and best practices",
+            fileName: "php-docs.pdf",
+            fileSize: "520 KB",
+            uploadedAt: "2024-01-18",
+            downloadUrl: "#",
+            type: "pdf"
+          },
+          {
+            id: 2,
+            title: "MySQL Integration Guide",
+            description: "Step-by-step guide for PHP-MySQL integration",
+            fileName: "mysql-guide.pdf",
+            fileSize: "380 KB",
+            uploadedAt: "2024-01-22",
+            downloadUrl: "#",
+            type: "pdf"
+          }
         ]
       },
       "3": {
@@ -326,6 +390,28 @@ const CourseLessonsPage = () => {
               "Use reactive forms"
             ]
           }
+        ],
+        notes: [
+          {
+            id: 1,
+            title: "Angular Style Guide",
+            description: "Official Angular coding style guide and conventions",
+            fileName: "angular-style-guide.pdf",
+            fileSize: "420 KB",
+            uploadedAt: "2024-01-20",
+            downloadUrl: "#",
+            type: "pdf"
+          },
+          {
+            id: 2,
+            title: "TypeScript Fundamentals",
+            description: "Essential TypeScript concepts for Angular development",
+            fileName: "typescript-fundamentals.pdf",
+            fileSize: "290 KB",
+            uploadedAt: "2024-01-25",
+            downloadUrl: "#",
+            type: "pdf"
+          }
         ]
       }
     };
@@ -335,7 +421,8 @@ const CourseLessonsPage = () => {
       instructor: "Unknown",
       description: "Course content not available",
       chapters: [],
-      assignments: []
+      assignments: [],
+      notes: []
     };
   };
 
@@ -413,6 +500,24 @@ const CourseLessonsPage = () => {
         return <BookOpen className="w-4 h-4" />;
       default:
         return <FileText className="w-4 h-4" />;
+    }
+  };
+
+  // Get file type icon for notes
+  const getFileIcon = (type) => {
+    switch (type) {
+      case 'pdf':
+        return <FileText className="w-4 h-4 text-red-600" />;
+      case 'doc':
+      case 'docx':
+        return <FileText className="w-4 h-4 text-blue-600" />;
+      case 'ppt':
+      case 'pptx':
+        return <FileText className="w-4 h-4 text-orange-600" />;
+      case 'zip':
+        return <Download className="w-4 h-4 text-purple-600" />;
+      default:
+        return <FileText className="w-4 h-4 text-gray-600" />;
     }
   };
 
@@ -508,7 +613,9 @@ const CourseLessonsPage = () => {
             
             <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
               <div className="text-xs sm:text-sm text-gray-600 hidden xs:block">
-                {activeTab === 'lessons' ? `${currentLesson + 1}/${allLessons.length}` : `${courseData.assignments?.length || 0} assignments`}
+                {activeTab === 'lessons' ? `${currentLesson + 1}/${allLessons.length}` : 
+                 activeTab === 'assignments' ? `${courseData.assignments?.length || 0} assignments` :
+                 `${courseData.notes?.length || 0} notes`}
               </div>
               <button
                 onClick={() => setShowSidebar(!showSidebar)}
@@ -763,6 +870,82 @@ const CourseLessonsPage = () => {
                 )}
               </div>
             )}
+
+            {/* Notes Content */}
+            {activeTab === 'notes' && (
+              <div className="p-3 sm:p-4 lg:p-6">
+                <div className="mb-6">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">
+                    Course Notes & Resources
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600">
+                    Download course materials, references, and additional resources provided by your instructor.
+                  </p>
+                </div>
+
+                {courseData.notes && courseData.notes.length > 0 ? (
+                  <div className="space-y-4">
+                    {courseData.notes.map((note) => (
+                      <div
+                        key={note.id}
+                        className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-md transition-all duration-200"
+                      >
+                        <div className="flex items-start space-x-3">
+                          <div className="flex-shrink-0 p-2 bg-green-100 rounded-lg">
+                            {getFileIcon(note.type)}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                              {note.title}
+                            </h3>
+                            <p className="text-sm text-gray-800 mb-3">
+                              {note.description}
+                            </p>
+                            
+                            {/* File Details */}
+                            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-700 mb-4">
+                              <div className="flex items-center space-x-1">
+                                <FileText className="w-4 h-4" />
+                                <span>{note.fileName}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Download className="w-4 h-4" />
+                                <span>{note.fileSize}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Calendar className="w-4 h-4" />
+                                <span>Added: {formatDate(note.uploadedAt)}</span>
+                              </div>
+                            </div>
+
+                            {/* Download Button */}
+                            <button 
+                              onClick={() => window.open(note.downloadUrl, '_blank')}
+                              className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                            >
+                              <Download className="w-4 h-4" />
+                              <span>Download File</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+                      <FileText className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      No notes available
+                    </h3>
+                    <p className="text-gray-600">
+                      Course notes and resources will appear here when your instructor adds them.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Enhanced Sidebar with Tabs */}
@@ -802,6 +985,16 @@ const CourseLessonsPage = () => {
                   }`}
                 >
                   Assignments
+                </button>
+                <button
+                  onClick={() => setActiveTab('notes')}
+                  className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                    activeTab === 'notes'
+                      ? 'bg-white text-blue-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  Notes
                 </button>
               </div>
 
@@ -931,6 +1124,43 @@ const CourseLessonsPage = () => {
                     <div className="text-center py-8">
                       <FileText className="w-8 h-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-sm text-gray-600">No assignments available</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Notes Tab Content */}
+              {activeTab === 'notes' && (
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Course Notes</h3>
+                  {courseData.notes && courseData.notes.length > 0 ? (
+                    <div className="space-y-3">
+                      {courseData.notes.map((note) => (
+                        <div key={note.id} className="border border-gray-200 rounded-lg p-3">
+                          <div className="flex items-start space-x-2 mb-2">
+                            <div className="flex-shrink-0 p-1 bg-green-100 rounded">
+                              {getFileIcon(note.type)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-medium text-gray-900 text-sm truncate">{note.title}</h4>
+                              <p className="text-xs text-gray-600 mt-1">{note.fileName}</p>
+                              <p className="text-xs text-gray-500">{note.fileSize}</p>
+                            </div>
+                          </div>
+                          <button 
+                            onClick={() => window.open(note.downloadUrl, '_blank')}
+                            className="w-full flex items-center justify-center space-x-1 px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700 transition-colors"
+                          >
+                            <Download className="w-3 h-3" />
+                            <span>Download</span>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-8">
+                      <FileText className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                      <p className="text-sm text-gray-600">No notes available</p>
                     </div>
                   )}
                 </div>

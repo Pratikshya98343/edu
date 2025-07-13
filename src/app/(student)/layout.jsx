@@ -13,6 +13,7 @@ import {
   X,
   Search,
   ShoppingCart,
+  Bell,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -60,6 +61,12 @@ const StudentLayout = ({ children }) => {
       label: "Order History",
       icon: Clock,
       href: "/order-history",
+    },
+    {
+      id: "notifications",
+      label: "Notifications",
+      icon: Bell,
+      href: "/notifications",
     },
   ];
 
