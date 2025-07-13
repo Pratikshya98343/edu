@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import StudentPanelFooter from "./StudentPanelFooter";
 
 const StudentLayout = ({ children }) => {
   const pathname = usePathname();
@@ -221,11 +222,14 @@ const StudentLayout = ({ children }) => {
 
           {/* Main Content Area */}
           <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-slate-50 rounded-xl lg:rounded-l-none lg:rounded-r-xl min-h-[600px]">
+            
             {children}
           </div>
+
         </div>
       </div>
     </div>
+    
   );
 };
 
