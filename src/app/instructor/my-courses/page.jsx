@@ -637,7 +637,8 @@ const InstructorMyCoursesPage = () => {
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-250px)]">
+
               <form onSubmit={handleSubmitCourse}>
                 {/* Basic Info Tab */}
                 {activeTab === 'basic' && (
