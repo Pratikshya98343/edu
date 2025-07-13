@@ -1,6 +1,7 @@
 'use client';
-import { React,useState } from 'react';
-import { Eye, EyeOff, ArrowRight, BookOpen } from 'lucide-react';
+import { React, useState } from 'react';
+import { Eye, EyeOff, ArrowRight, BookOpen, User, Shield, GraduationCap } from 'lucide-react';
+import Link from 'next/link';
 
 export default function EduVerseLogin() {
   const [formData, setFormData] = useState({
@@ -20,14 +21,12 @@ export default function EduVerseLogin() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
-    // Handle login logic here
+    console.log('Student login attempt:', formData);
+    // Handle student login logic here
   };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#c3a4f5' }}>
-     
-
       {/* Main Content */}
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 py-12">
         {/* Page Title */}
@@ -35,12 +34,57 @@ export default function EduVerseLogin() {
           <h1 className="text-5xl font-bold text-white mb-4">Login</h1>
         </div>
 
-        {/* Login Form Container */}
+        {/* Login Options */}
+        <div className="w-full max-w-4xl mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Student Login */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-blue-200">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">Student</h3>
+                <p className="text-gray-600 text-sm mb-4">Access your courses and learning materials</p>
+                <div className="w-full h-1 bg-blue-500 rounded-full"></div>
+              </div>
+            </div>
+
+            {/* Instructor Login */}
+            <Link href="/login/instructorlogin">
+              <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-green-200 transition-all duration-200 cursor-pointer hover:shadow-xl">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Instructor</h3>
+                  <p className="text-gray-600 text-sm mb-4">Manage your courses and students</p>
+                  <div className="w-full h-1 bg-gray-200 rounded-full"></div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Admin Login */}
+            <Link href="/login/adminlogin">
+              <div className="bg-white rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-red-200 transition-all duration-200 cursor-pointer hover:shadow-xl">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Admin</h3>
+                  <p className="text-gray-600 text-sm mb-4">System administration and management</p>
+                  <div className="w-full h-1 bg-gray-200 rounded-full"></div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Student Login Form Container */}
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl shadow-2xl p-8">
             {/* Form Header */}
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-2">Login</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-2">Student Login</h2>
               <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto"></div>
             </div>
 
@@ -111,7 +155,7 @@ export default function EduVerseLogin() {
                 onClick={handleSubmit}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:ring-4 focus:ring-blue-300 transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
               >
-                <span>Log In</span>
+                <span>Log In as Student</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -121,13 +165,6 @@ export default function EduVerseLogin() {
               <div className="flex-1 border-t border-gray-300"></div>
               <span className="px-4 text-gray-500 text-sm font-medium">OR</span>
               <div className="flex-1 border-t border-gray-300"></div>
-            </div>
-
-            {/* Social Login Buttons */}
-            <div className="space-y-3">
-              
-
-              
             </div>
 
             {/* Sign Up Link */}
