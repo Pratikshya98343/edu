@@ -20,8 +20,10 @@ import {
   Target,
   Shield
 } from "lucide-react";
+import Navbar from './Navbar';
 
 const Homepage = () => {
+  <Navbar></Navbar>
   const [cartCount] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
