@@ -12,7 +12,6 @@ import {
   Users,
   Clock,
   Download,
-  Edit,
   Calendar,
   Upload,
 } from "lucide-react";
@@ -294,9 +293,6 @@ const InstructorAssignmentsPage = () => {
                       >
                         <Eye className="w-4 h-4" />
                         <span>View Submissions</span>
-                      </button>
-                      <button className="p-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
-                        <Edit className="w-4 h-4" />
                       </button>
                       <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
                         <Trash2 className="w-4 h-4" />
