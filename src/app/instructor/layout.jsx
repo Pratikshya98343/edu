@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LayoutDashboard,
   User,
@@ -13,21 +13,48 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "../../contexts/AuthContext";
 
 const InstructorLayout = ({ children }) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { logout, user } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const profileData = {
-    firstName: "John",
-    lastName: "Smith",
+  const [profileData, setProfileData] = useState({
+    firstName: "Instructor",
+    lastName: "",
     username: "john.instructor",
     email: "john.smith@example.com",
     phone: "+1-555-123-4567",
     title: "Senior Instructor",
     bio: "Passionate educator with 10+ years of experience in web development and programming instruction.",
-  };
+  });
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      if (user) {
+        try {
+          const response = await fetch('/api/instructor/profile')
+          if (response.ok) {
+            const data = await response.json()
+            setProfileData({
+              firstName: data.firstName || "Instructor",
+              lastName: data.lastName || "",
+              username: data.username || "john.instructor",
+              email: data.email || "john.smith@example.com",
+              phone: data.phone || "+1-555-123-4567",
+              title: data.title || "Senior Instructor",
+              bio: data.bio || "Passionate educator with 10+ years of experience in web development and programming instruction.",
+            })
+          }
+        } catch (error) {
+          console.error('Error fetching profile data:', error)
+        }
+      }
+    }
+
+    fetchProfileData()
+  }, [user])
 
   const navigationItems = [
     {
@@ -72,11 +99,13 @@ const InstructorLayout = ({ children }) => {
     { id: "logout", label: "Logout", icon: LogOut, action: "logout" },
   ];
 
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    sessionStorage.clear();
-    router.push('/');
-    closeSidebar();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      closeSidebar();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   const isActive = (href) => {
@@ -109,7 +138,7 @@ const InstructorLayout = ({ children }) => {
                   {profileData.title}
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
-                  {profileData.firstName} {profileData.lastName}
+                  {profileData.firstName}{profileData.lastName ? ` ${profileData.lastName}` : ''}
                 </h1>
                 <div className="text-sm text-gray-600 mt-1">
                   Instructor Dashboard
@@ -159,7 +188,7 @@ const InstructorLayout = ({ children }) => {
           >
             <div className="p-4 sm:p-6 h-full overflow-y-auto">
               <div className="text-slate-500 text-sm mb-6 mt-12 lg:mt-0">
-                WELCOME, {profileData.firstName}!
+                WELCOME, {profileData.firstName || 'Instructor'}!
               </div>
 
               <nav className="space-y-2">
