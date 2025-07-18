@@ -4,88 +4,112 @@ import {
   LayoutDashboard,
   User,
   BookOpen,
-  List,
+  Heart,
+  Star,
+  Clock,
   Settings,
   LogOut,
   Menu,
   X,
+  Search,
+  ShoppingCart,
   Bell,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
+import StudentPanelFooter from "./StudentPanelFooter";
 
-const InstructorLayout = ({ children }) => {
+const StudentLayout = ({ children }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const { logout, user } = useAuth();
+  const { user, logout } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [profileData, setProfileData] = useState({
-    firstName: "Instructor",
+    firstName: "Student",
     lastName: "",
-    username: "john.instructor",
-    email: "john.smith@example.com",
-    phone: "+1-555-123-4567",
-    title: "Senior Instructor",
-    bio: "Passionate educator with 10+ years of experience in web development and programming instruction.",
+    username: "student.user",
+    email: "student@example.com",
+    phone: "+1-202-555-0174",
+    registrationDate: "February 25, 2025",
+    bio: "I'm a student passionate about learning and growing through online education.",
   });
 
   useEffect(() => {
     const fetchProfileData = async () => {
       if (user) {
         try {
-          const response = await fetch('/api/instructor/profile')
+          const response = await fetch('/api/student/profile');
           if (response.ok) {
-            const data = await response.json()
+            const data = await response.json();
             setProfileData({
-              firstName: data.firstName || "Instructor",
+              firstName: data.firstName || "Student",
               lastName: data.lastName || "",
-              username: data.username || "john.instructor",
-              email: data.email || "john.smith@example.com",
-              phone: data.phone || "+1-555-123-4567",
-              title: data.title || "Senior Instructor",
-              bio: data.bio || "Passionate educator with 10+ years of experience in web development and programming instruction.",
-            })
+              username: data.username || "student.user",
+              email: data.email || "student@example.com",
+              phone: data.phone || "+1-202-555-0174",
+              registrationDate: data.registrationDate || "February 25, 2025",
+              bio: data.bio || "I'm a student passionate about learning and growing through online education.",
+            });
           }
         } catch (error) {
-          console.error('Error fetching profile data:', error)
+          console.error('Error fetching profile data:', error);
         }
       }
-    }
+    };
 
-    fetchProfileData()
-  }, [user])
+    fetchProfileData();
+  }, [user]);
 
   const navigationItems = [
     {
       id: "dashboard",
       label: "Dashboard",
       icon: LayoutDashboard,
-      href: "/instructor/dashboard",
+      href: "/student/dashboard",
     },
     {
       id: "profile",
       label: "My Profile",
       icon: User,
-      href: "/instructor/profile",
+      href: "/student/profile",
     },
     {
-      id: "my-courses",
+      id: "browse-courses",
+      label: "Browse Courses",
+      icon: Search,
+      href: "/student/browse-courses",
+    },
+    {
+      id: "courses",
       label: "My Courses",
       icon: BookOpen,
-      href: "/instructor/my-courses",
+      href: "/student/courses",
     },
     {
-      id: "assignments",
-      label: "Assignments",
-      icon: List,
-      href: "/instructor/assignments",
+      id: "wishlist",
+      label: "Wishlist",
+      icon: Heart,
+      href: "/student/wishlist",
+    },
+    {
+      id: "cart",
+      label: "Cart",
+      icon: ShoppingCart,
+      href: "/student/cart",
+    },
+    { id: "reviews", label: "Reviews", icon: Star, href: "/student/reviews" },
+    {
+      id: "order-history",
+      label: "Order History",
+      icon: Clock,
+      href: "/student/order-history",
     },
     {
       id: "notifications",
       label: "Notifications",
       icon: Bell,
-      href: "/instructor/notifications",
+      href: "/student/notifications",
     },
   ];
 
@@ -94,7 +118,7 @@ const InstructorLayout = ({ children }) => {
       id: "settings",
       label: "Settings",
       icon: Settings,
-      href: "/instructor/settings",
+      href: "/student/settings",
     },
     { id: "logout", label: "Logout", icon: LogOut, action: "logout" },
   ];
@@ -105,12 +129,17 @@ const InstructorLayout = ({ children }) => {
       closeSidebar();
     } catch (error) {
       console.error('Logout failed:', error);
+      // Fallback: clear local storage and redirect
+      localStorage.removeItem('authToken');
+      sessionStorage.clear();
+      router.push('/');
+      closeSidebar();
     }
   };
 
   const isActive = (href) => {
-    if (href === "/instructor/dashboard") {
-      return pathname === "/instructor/dashboard" || pathname === "/instructor";
+    if (href === "/dashboard") {
+      return pathname === "/dashboard" || pathname === "/";
     }
     return pathname.startsWith(href);
   };
@@ -130,19 +159,13 @@ const InstructorLayout = ({ children }) => {
         <div className="max-w-7xl mx-auto p-2 sm:p-4 lg:p-5">
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-4 sm:mb-6 lg:mb-8">
             <div className="flex items-center space-x-6">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl sm:text-2xl flex-shrink-0">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl sm:text-2xl flex-shrink-0">
                 {profileData.firstName.charAt(0)}{profileData.lastName.charAt(0)}
               </div>
               <div className="flex-1">
-                <div className="text-sm text-gray-500 mb-1">
-                  {profileData.title}
-                </div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-slate-800">
                   {profileData.firstName}{profileData.lastName ? ` ${profileData.lastName}` : ''}
                 </h1>
-                <div className="text-sm text-gray-600 mt-1">
-                  Instructor Dashboard
-                </div>
               </div>
             </div>
           </div>
@@ -188,7 +211,7 @@ const InstructorLayout = ({ children }) => {
           >
             <div className="p-4 sm:p-6 h-full overflow-y-auto">
               <div className="text-slate-500 text-sm mb-6 mt-12 lg:mt-0">
-                WELCOME, {profileData.firstName || 'Instructor'}!
+                WELCOME, {profileData.firstName || 'Student'}!
               </div>
 
               <nav className="space-y-2">
@@ -215,7 +238,7 @@ const InstructorLayout = ({ children }) => {
 
               <div className="mt-8 sm:mt-10 pt-6 border-t border-slate-200">
                 <div className="text-slate-400 text-xs font-semibold mb-4 tracking-wider">
-                  INSTRUCTOR
+                  USER
                 </div>
                 <nav className="space-y-2">
                   {userActions.map((item) => {
@@ -253,12 +276,15 @@ const InstructorLayout = ({ children }) => {
 
           {/* Main Content Area */}
           <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-slate-50 rounded-xl lg:rounded-l-none lg:rounded-r-xl min-h-[600px]">
+            
             {children}
           </div>
+
         </div>
       </div>
     </div>
+    
   );
 };
 
-export default InstructorLayout;
+export default StudentLayout;

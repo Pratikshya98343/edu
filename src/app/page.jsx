@@ -20,10 +20,9 @@ import {
   Target,
   Shield
 } from "lucide-react";
-import Navbar from './Navbar';
+import Navbar from '@/components/main/Navbar';
 
 const Homepage = () => {
-  <Navbar></Navbar>
   const [cartCount] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -174,14 +173,31 @@ const Homepage = () => {
               </div>
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg flex items-center justify-center space-x-2 hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
+                <a href="/register" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg flex items-center justify-center space-x-2 hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
                   <span className="font-semibold">Get Started Free</span>
                   <ArrowRight className="w-5 h-5" />
-                </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg flex items-center justify-center space-x-2 hover:border-purple-600 hover:text-purple-600 transition-all transform hover:scale-105">
-                  <Play className="w-5 h-5" />
-                  <span className="font-semibold">Watch Demo</span>
-                </button>
+                </a>
+                <a href="/login" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg flex items-center justify-center space-x-2 hover:border-purple-600 hover:text-purple-600 transition-all transform hover:scale-105">
+                  <span className="font-semibold">Sign In</span>
+                </a>
+              </div>
+              
+              {/* Additional CTA Section */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200 shadow-lg">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Ready to start learning?</h3>
+                    <p className="text-sm text-gray-600">Join thousands of students already learning</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <a href="/register" className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors font-medium">
+                      Register Now
+                    </a>
+                    <a href="/login" className="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium">
+                      Login
+                    </a>
+                  </div>
+                </div>
               </div>
               {/* Quick Stats */}
               <div className="flex flex-wrap gap-8 pt-4">
@@ -415,6 +431,37 @@ const Homepage = () => {
                 />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Career?
+          </h2>
+          <p className="text-xl text-purple-100 mb-8 leading-relaxed">
+            Join thousands of students who have already started their learning journey. 
+            Get access to premium courses, expert instructors, and a supportive community.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="/register" 
+              className="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg flex items-center space-x-2"
+            >
+              <span>Start Learning Today</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <a 
+              href="/login" 
+              className="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition-all transform hover:scale-105 flex items-center space-x-2"
+            >
+              <span>Sign In</span>
+            </a>
+          </div>
+          <div className="mt-8 text-purple-200 text-sm">
+            <p>✓ 30-day money-back guarantee  ✓ Lifetime access  ✓ Expert support</p>
           </div>
         </div>
       </section>

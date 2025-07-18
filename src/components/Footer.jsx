@@ -1,131 +1,91 @@
 "use client";
-import React, { useState } from 'react';
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { IoSend } from "react-icons/io5";
+import React from 'react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = () => {
-    console.log('Email submitted:', email);
-    setEmail('');
-  };
-
   return (
-    <footer className="bg-gray-50 py-4 px-8">
-      <div className="max-w-9xl mx-auto px-5">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          {/* Logo and Social Section */}
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          {/* Logo and Description */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-40 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg italic">Eduverse</span>
-              </div>
+            <div className="bg-blue-600 px-4 py-2 rounded-lg inline-block">
+              <span className="text-white font-bold text-xl">Eduverse</span>
             </div>
-            
-            <div className="flex space-x-3">
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-colors">
-                <FaFacebook className="w-4 h-4 text-gray-600" />
-              </div>
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-colors">
-                <FaTwitter className="w-4 h-4 text-gray-600" />
-              </div>
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-colors">
-                <FaInstagram className="w-4 h-4 text-gray-600" />
-              </div>
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 cursor-pointer transition-colors">
-                <FaLinkedin className="w-4 h-4 text-gray-600" />
-              </div>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Empowering learners worldwide with quality education and innovative learning experiences.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
             </div>
-
-            <button className="flex items-center space-x-3 border border-gray-300 rounded-full px-6 py-2 hover:border-blue-600 hover:text-blue-600 transition-colors">
-              <span className="text-gray-700 text-sm">Contact With Us</span>
-              <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                <div className="w-2 h-2 border-r border-b border-white transform rotate-[-45deg] translate-x-[-1px]"></div>
-              </div>
-            </button>
           </div>
 
-          {/* Useful Links */}
+          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Useful Links</h3>
-            <ul className="space-y-1">
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Marketplace</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">kindergarten</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">University</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Classic Lms</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">FAQ</a></li>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Courses</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Instructors</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
 
-          {/* Our Company */}
+          {/* Support */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Our Company</h3>
-            <ul className="space-y-1">
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Become Teacher</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Instructor</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Events</a></li>
+            <h3 className="text-lg font-semibold mb-4">Support</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Community</a></li>
             </ul>
           </div>
 
-          {/* Get Contact */}
-          <div className="mt-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Get Contact</h3>
-            <div className="space-y-2">
-              <p className="text-gray-600">Phone: (406) 555-0120</p>
-              <p className="text-gray-600">E-mail: admin@example.com</p>
-              
-              <div className="mt-1">
-                <h4 className="text-gray-800 font-medium mb-1">Newsletter</h4>
-                <p className="text-gray-600 text-sm mb-2">
-                  2000+ Our students are subscribe Around the World, Don't be shy introduce yourself!
-                </p>
-                
-                <div className="space-y-2">
-                  <div className="relative">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter Your Email Here"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 pr-12"
-                    />
-                    <button
-                      onClick={handleSubmit}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600"
-                    >
-                      <IoSend className="w-5 h-5" />
-                    </button>
-                  </div>
-                  
-                  <button
-                    onClick={handleSubmit}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors font-medium"
-                  >
-                    Submit Now
-                  </button>
-                </div>
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-blue-400" />
+                <span className="text-gray-300">support@eduverse.com</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-blue-400" />
+                <span className="text-gray-300">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MapPin className="w-5 h-5 text-blue-400" />
+                <span className="text-gray-300">New York, NY 10001</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-200 mt-4 pt-4">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
-            <div className="text-gray-600 text-xs">
-              © Copyright 2025 <span className="text-blue-600">Rainbow-Themes</span> All Rights Reserved
-            </div>
-            <div className="flex space-x-4 text-xs">
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Terms of service</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Privacy policy</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Subscription</a>
-              <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Login & Register</a>
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-gray-400 text-sm">
+              © 2025 Eduverse. All rights reserved.
+            </p>
+            <div className="flex space-x-6 text-sm">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </div>
