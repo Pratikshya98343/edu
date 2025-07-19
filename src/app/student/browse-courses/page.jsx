@@ -25,65 +25,68 @@ const BrowseCoursesPage = () => {
     page: 1,
     limit: 12,
     total: 0,
-    pages: 0
+    pages: 0,
   });
 
   const fetchCourses = async (page = 1) => {
     try {
       setLoading(true);
       setError(null);
-      
+
       const params = new URLSearchParams({
         page: page.toString(),
-        limit: pagination.limit.toString()
+        limit: pagination.limit.toString(),
       });
-      
-      if (selectedCategory !== 'all') {
-        params.append('category', selectedCategory);
+
+      if (selectedCategory !== "all") {
+        params.append("category", selectedCategory);
       }
-      
+
       if (searchTerm) {
-        params.append('search', searchTerm);
+        params.append("search", searchTerm);
       }
-      
-      if (selectedPrice !== 'all') {
-        params.append('price', selectedPrice);
+
+      if (selectedPrice !== "all") {
+        params.append("price", selectedPrice);
       }
-      
+
       const response = await fetch(`/api/courses?${params}`);
-      
+
       if (!response.ok) {
-        throw new Error('Failed to fetch courses');
+        throw new Error("Failed to fetch courses");
       }
-      
+
       const data = await response.json();
+      console.log(data);
       setCourses(data.courses || []);
-      setPagination(data.pagination || {
-        page: 1,
-        limit: 12,
-        total: 0,
-        pages: 0
-      });
+      setPagination(
+        data.pagination || {
+          page: 1,
+          limit: 12,
+          total: 0,
+          pages: 0,
+        }
+      );
     } catch (err) {
-      console.error('Error fetching courses:', err);
+      console.error("Error fetching courses:", err);
       setError(err.message);
-      toast.error('Failed to load courses');
+      toast.error("Failed to load courses");
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchCourses(1);
   }, [selectedCategory, selectedPrice, searchTerm]);
-  
+
   useEffect(() => {
     const delayedSearch = setTimeout(() => {
-      if (searchTerm !== '') {
+      if (searchTerm !== "") {
         fetchCourses(1);
       }
     }, 500);
-    
+
     return () => clearTimeout(delayedSearch);
   }, [searchTerm]);
 
@@ -107,22 +110,22 @@ const BrowseCoursesPage = () => {
 
   const handleAddToWishlist = async (courseId) => {
     try {
-      const course = courses.find(c => c._id === courseId);
-      const method = course?.inWishlist ? 'DELETE' : 'POST';
-      
-      const response = await fetch('/api/student/wishlist', {
+      const course = courses.find((c) => c._id === courseId);
+      const method = course?.inWishlist ? "DELETE" : "POST";
+
+      const response = await fetch("/api/student/wishlist", {
         method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({ courseId }),
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to update wishlist');
+        throw new Error("Failed to update wishlist");
       }
-      
+
       setCourses(
         courses.map((course) =>
           course._id === courseId
@@ -130,39 +133,39 @@ const BrowseCoursesPage = () => {
             : course
         )
       );
-      
-      toast.success(course?.inWishlist ? 'Removed from wishlist' : 'Added to wishlist');
+
+      toast.success(
+        course?.inWishlist ? "Removed from wishlist" : "Added to wishlist"
+      );
     } catch (err) {
-      console.error('Error updating wishlist:', err);
-      toast.error('Failed to update wishlist');
+      console.error("Error updating wishlist:", err);
+      toast.error("Failed to update wishlist");
     }
   };
 
   const handleAddToCart = async (courseId) => {
     try {
-      const response = await fetch('/api/student/cart', {
-        method: 'POST',
+      const response = await fetch("/api/student/cart", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({ courseId }),
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to add to cart');
+        throw new Error("Failed to add to cart");
       }
-      
-      toast.success('Added to cart successfully');
+
+      toast.success("Added to cart successfully");
     } catch (err) {
-      console.error('Error adding to cart:', err);
-      toast.error('Failed to add to cart');
+      console.error("Error adding to cart:", err);
+      toast.error("Failed to add to cart");
     }
   };
 
   const filteredCourses = courses;
-
-
 
   return (
     <div className="w-full p-3 sm:p-4 lg:p-6">
@@ -256,7 +259,10 @@ const BrowseCoursesPage = () => {
                   >
                     <div className="relative">
                       <img
-                        src={course.thumbnail || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop'}
+                        src={
+                          course.thumbnail ||
+                          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop"
+                        }
                         alt={course.title}
                         className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
@@ -297,7 +303,8 @@ const BrowseCoursesPage = () => {
                           ))}
                         </div>
                         <span className="text-xs text-gray-600">
-                          {(course.averageRating || 0).toFixed(1)} ({course.reviewCount || 0})
+                          {(course.averageRating || 0).toFixed(1)} (
+                          {course.reviewCount || 0})
                         </span>
                       </div>
 
@@ -326,11 +333,12 @@ const BrowseCoursesPage = () => {
                               <span className="text-lg font-bold text-gray-800">
                                 ${course.price}
                               </span>
-                              {course.originalPrice && course.originalPrice > course.price && (
-                                <span className="text-sm line-through text-gray-500">
-                                  ${course.originalPrice}
-                                </span>
-                              )}
+                              {course.originalPrice &&
+                                course.originalPrice > course.price && (
+                                  <span className="text-sm line-through text-gray-500">
+                                    ${course.originalPrice}
+                                  </span>
+                                )}
                             </>
                           )}
                         </div>
@@ -339,7 +347,9 @@ const BrowseCoursesPage = () => {
                       <div className="space-y-2">
                         {course.isEnrolled ? (
                           <button
-                            onClick={() => window.location.href = `/student/courses/${course._id}/lessons`}
+                            onClick={() =>
+                              (window.location.href = `/student/courses/${course._id}/lessons`)
+                            }
                             className="w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-2 text-sm"
                           >
                             <Play className="w-4 h-4" />
@@ -359,7 +369,7 @@ const BrowseCoursesPage = () => {
                   </div>
                 ))}
               </div>
-              
+
               {pagination.pages > 1 && (
                 <div className="flex items-center justify-center mt-8 space-x-2">
                   <button
@@ -369,7 +379,7 @@ const BrowseCoursesPage = () => {
                   >
                     Previous
                   </button>
-                  
+
                   <div className="flex space-x-1">
                     {[...Array(Math.min(5, pagination.pages))].map((_, i) => {
                       const pageNum = i + 1;
@@ -379,8 +389,8 @@ const BrowseCoursesPage = () => {
                           onClick={() => fetchCourses(pageNum)}
                           className={`px-3 py-2 rounded-lg ${
                             pagination.page === pageNum
-                              ? 'bg-blue-600 text-white'
-                              : 'border border-slate-300 text-slate-600 hover:bg-slate-50'
+                              ? "bg-blue-600 text-white"
+                              : "border border-slate-300 text-slate-600 hover:bg-slate-50"
                           }`}
                         >
                           {pageNum}
@@ -388,7 +398,7 @@ const BrowseCoursesPage = () => {
                       );
                     })}
                   </div>
-                  
+
                   <button
                     onClick={() => fetchCourses(pagination.page + 1)}
                     disabled={pagination.page === pagination.pages}

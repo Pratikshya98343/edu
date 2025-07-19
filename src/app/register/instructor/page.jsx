@@ -134,7 +134,6 @@ export default function InstructorRegistration() {
       const username = generateUsername(formData.email, firstName, lastName);
       
       const registrationData = {
-        username,
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
