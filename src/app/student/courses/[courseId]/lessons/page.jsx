@@ -270,7 +270,7 @@ const CourseLessonsPage = () => {
             back later.
           </p>
           <Link href="/student/courses">
-            <button className="bg-blue-600 text-white px-4  py-2 sm:px-3 rounded-lg hover:bg-blue-700 text-sm sm:text-base">
+            <button className="bg-blue-600 text-white px-4 py-2 sm:px-3 rounded-lg hover:bg-blue-700 text-sm sm:text-base">
               Back to Courses
             </button>
           </Link>
