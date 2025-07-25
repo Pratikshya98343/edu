@@ -61,21 +61,21 @@ const Homepage = () => {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
+      name: "Hari Bahadur",
       role: "Web Developer",
-      image: "👩‍💻",
+      image: "👨‍💼",
       text: "The courses here completely transformed my career. I went from knowing nothing about coding to landing my dream job in just 6 months!"
     },
     {
-      name: "Michael Chen",
-      role: "Full Stack Developer",
+      name: "Sandy Bhai",
+      role: "Backend Developer",
       image: "👨‍💼",
       text: "Incredible learning experience! The instructors are top-notch and the curriculum is perfectly structured for real-world applications."
     },
     {
-      name: "Emily Rodriguez",
+      name: "Rajnish Kumar Saphi",
       role: "UI/UX Designer",
-      image: "👩‍🎨",
+      image: "👨‍💼",
       text: "Best investment I've ever made. The design courses here are comprehensive and taught by industry professionals."
     }
   ];

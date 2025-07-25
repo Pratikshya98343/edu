@@ -374,7 +374,7 @@ const InstructorAssignmentsPage = () => {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-500">Loading assignments...</p>
+              <p className="text-black">Loading assignments...</p>
             </div>
           ) : error ? (
             <div className="text-center py-12">
@@ -646,17 +646,17 @@ const InstructorAssignmentsPage = () => {
                 <div className="lg:col-span-2 space-y-6">
                   {/* Student Info */}
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <h4 className="font-semibold text-gray-900 mb-2">Student Information</h4>
+                    <h4 className="font-semibold text-black mb-2">Student Information</h4>
                     <div className="space-y-1 text-sm">
-                      <p><span className="font-medium">Name:</span> {selectedSubmission.student?.name || 'Unknown Student'}</p>
-                      <p><span className="font-medium">Email:</span> {selectedSubmission.student?.email || 'No email'}</p>
-                      <p><span className="font-medium">Submitted:</span> {formatDateTime(selectedSubmission.submittedAt)}</p>
+                      <p className=" text-black"><span className="font-medium">Name:</span> {selectedSubmission.student?.name || 'Unknown Student'}</p>
+                      <p className=" text-black"><span className="font-medium">Email:</span> {selectedSubmission.student?.email || 'No email'}</p>
+                      <p className=" text-black"><span className="font-medium">Submitted:</span> {formatDateTime(selectedSubmission.submittedAt)}</p>
                     </div>
                   </div>
 
                   {/* Submission Text */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Submission Content</h4>
+                    <h4 className="font-semibold text-black mb-3">Submission Content</h4>
                     <div className="bg-white border border-gray-200 rounded-lg p-4">
                       <pre className="whitespace-pre-wrap text-sm text-gray-700 font-sans">
                         {selectedSubmission.content || 'No text content'}
