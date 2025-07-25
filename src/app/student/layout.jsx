@@ -14,11 +14,13 @@ import {
   Search,
   ShoppingCart,
   Bell,
+  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import StudentPanelFooter from "./StudentPanelFooter";
+import Header from "@/components/Header";
 
 const StudentLayout = ({ children }) => {
   const pathname = usePathname();
@@ -120,7 +122,6 @@ const StudentLayout = ({ children }) => {
       icon: Settings,
       href: "/student/settings",
     },
-    { id: "logout", label: "Logout", icon: LogOut, action: "logout" },
   ];
 
   const handleLogout = async () => {
@@ -154,6 +155,33 @@ const StudentLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-300 via-cyan-300 via-30% to-white to-50%">
+      
+{/* Simple Header with Only Logout */}
+<header className="bg-white shadow-sm sticky top-0 z-50">
+  <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    {/* Logo */}
+    <div className="flex items-center space-x-2">
+      <Link href="/" className="flex items-center space-x-2">
+        <GraduationCap className="w-8 h-8 text-blue-600" />
+        <span className="text-xl font-bold text-blue-600">EduVerse</span>
+      </Link>
+    </div>
+
+    {/* Only Logout Button - positioned closer to the end */}
+    <div className="flex items-center">
+      {/* Logout Button */}
+      <button 
+        onClick={handleLogout}
+        className="flex items-center space-x-2 px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors font-medium"
+      >
+        <LogOut className="w-4 h-4" />
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
       {/* Header Section */}
       <div className="relative z-30">
         <div className="max-w-7xl mx-auto p-2 sm:p-4 lg:p-5">
@@ -244,19 +272,6 @@ const StudentLayout = ({ children }) => {
                   {userActions.map((item) => {
                     const Icon = item.icon;
                     
-                    if (item.action === "logout") {
-                      return (
-                        <button
-                          key={item.id}
-                          onClick={handleLogout}
-                          className="w-full flex items-center space-x-3 px-3 sm:px-4 py-2 sm:py-3 rounded-lg text-left transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm sm:text-base"
-                        >
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
-                          <span className="truncate">{item.label}</span>
-                        </button>
-                      );
-                    }
-                    
                     return (
                       <Link href={item.href} key={item.id} passHref>
                         <button
@@ -276,14 +291,11 @@ const StudentLayout = ({ children }) => {
 
           {/* Main Content Area */}
           <div className="flex-1 p-4 sm:p-6 lg:p-8 bg-slate-50 rounded-xl lg:rounded-l-none lg:rounded-r-xl min-h-[600px]">
-            
             {children}
           </div>
-
         </div>
       </div>
     </div>
-    
   );
 };
 

@@ -21,6 +21,8 @@ import {
   Shield
 } from "lucide-react";
 import Navbar from '@/components/main/Navbar';
+import Header from '@/components/Header';
+
 
 const Homepage = () => {
   const [cartCount] = useState(0);
@@ -53,7 +55,9 @@ const Homepage = () => {
     animateStats();
   }, []);
 
+
   
+
 
   const testimonials = [
     {
@@ -75,6 +79,7 @@ const Homepage = () => {
       text: "Best investment I've ever made. The design courses here are comprehensive and taught by industry professionals."
     }
   ];
+
 
   const features = [
     {
@@ -109,6 +114,7 @@ const Homepage = () => {
     }
   ];
 
+
   const courses = [
     {
       title: "Complete Web Development Bootcamp",
@@ -139,10 +145,12 @@ const Homepage = () => {
     }
   ];
 
+
   return (
     <div className="min-h-screen bg-white">
+      <Header></Header>
       {/* Hero Section */}
-      <section id="home" className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-20 pt-32">
+      <section id="home" className="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -222,6 +230,7 @@ const Homepage = () => {
                 <div className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-to-br from-purple-300 to-purple-400 rounded-full opacity-70 animate-pulse delay-150"></div>
               </div>
 
+
 <div className="relative z-10 flex justify-center">
   <div className="relative">
     <div className="w-80 h-96 rounded-2xl overflow-hidden shadow-2xl">
@@ -275,7 +284,7 @@ const Homepage = () => {
       </section>
       
       {/* Categories Section */}
-      <section id="courses" className="py-20 bg-white">
+      <section id="courses" className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -326,8 +335,9 @@ const Homepage = () => {
         </div>
       </section>
 
+
       {/* Featured Courses */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -367,6 +377,7 @@ const Homepage = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
 
+
                     </div>
                   </div>
                 </div>
@@ -376,8 +387,9 @@ const Homepage = () => {
         </div>
       </section>
 
+
       {/* Testimonials */}
-      <section id="testimonials" className="py-20 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
+      <section id="testimonials" className="py-16 md:py-20 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -435,8 +447,9 @@ const Homepage = () => {
         </div>
       </section>
 
+
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Career?
@@ -465,6 +478,7 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+
 
       <style jsx>{`
         @keyframes float {
@@ -495,5 +509,6 @@ const Homepage = () => {
     </div>
   );
 };
+
 
 export default Homepage;

@@ -1,4 +1,3 @@
-// app/admin/payments/page.jsx
 "use client";
 import React, { useState, useEffect } from "react";
 import {
@@ -117,7 +116,6 @@ const AdminPaymentsPage = () => {
                 Monitor and manage all platform transactions
               </p>
             </div>
-            
           </div>
         </div>
 
@@ -184,7 +182,7 @@ const AdminPaymentsPage = () => {
           </div>
         </div>
 
-        {/* Payments Table */}
+        {/* Payments Table - Fully Fixed for Desktop Responsiveness and Value Display */}
         <div className="overflow-x-auto">
           {loading ? (
             <div className="flex items-center justify-center py-12">
@@ -208,54 +206,88 @@ const AdminPaymentsPage = () => {
               <span className="ml-2 text-gray-600">No payments found</span>
             </div>
           ) : (
-            <table className="w-full">
+            <table className="w-full table-fixed">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Transaction</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Student</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Course</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Revenue Split</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/6">
+                    Transaction
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/6">
+                    Student
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/5">
+                    Course
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/8">
+                    Amount
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/5">
+                    Revenue Split
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider w-1/8">
+                    Status
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {payments.map((payment) => (
                   <tr key={payment.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{payment.id}</div>
-                        <div className="text-sm text-gray-700">{payment.paymentGateway}</div>
+                    <td className="px-4 py-4 w-1/6">
+                      <div className="space-y-1">
+                        <div className="text-sm font-medium text-gray-900 break-words">
+                          {payment.id}
+                        </div>
+                        <div className="text-sm text-gray-700 break-words">
+                          {payment.paymentGateway}
+                        </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{payment.studentName}</div>
-                        <div className="text-sm text-gray-700">{payment.studentEmail}</div>
+                    <td className="px-4 py-4 w-1/6">
+                      <div className="space-y-1">
+                        <div className="text-sm font-medium text-gray-900 break-words">
+                          {payment.studentName}
+                        </div>
+                        <div className="text-sm text-gray-700 break-words">
+                          {payment.studentEmail}
+                        </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">{payment.courseName}</div>
-                        <div className="text-sm text-gray-700">by {payment.instructorName}</div>
+                    <td className="px-4 py-4 w-1/5">
+                      <div className="space-y-1">
+                        <div className="text-sm font-medium text-gray-900 break-words">
+                          {payment.courseName}
+                        </div>
+                        <div className="text-sm text-gray-700 break-words">
+                          by {payment.instructorName}
+                        </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">${payment.amount?.toFixed(2)}</div>
-                      <div className="text-sm text-gray-700">{payment.paymentMethod}</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm">
-                        <div className="text-green-600 font-medium">Admin: ${payment.adminRevenue?.toFixed(2)}</div>
-                        <div className="text-blue-600">Instructor: ${payment.instructorAmount?.toFixed(2)}</div>
+                    <td className="px-4 py-4 w-1/8">
+                      <div className="text-sm font-medium text-gray-900">
+                        ${payment.amount?.toFixed(2)}
+                      </div>
+                      <div className="text-sm text-gray-700 break-words">
+                        {payment.paymentMethod}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-4 py-4 w-1/5">
+                      <div className="text-sm space-y-1">
+                        <div className="text-green-600 font-medium break-words">
+                          Admin: ${payment.adminRevenue?.toFixed(2)}
+                        </div>
+                        <div className="text-blue-600 break-words">
+                          Instructor: ${payment.instructorAmount?.toFixed(2)}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 w-1/8">
                       <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(payment.status)}`}>
                         {payment.status}
                       </span>
                       {payment.status === 'failed' && payment.failureReason && (
-                        <div className="text-xs text-red-600 mt-1">{payment.failureReason}</div>
+                        <div className="text-xs text-red-600 mt-1 break-words">
+                          {payment.failureReason}
+                        </div>
                       )}
                     </td>
                   </tr>

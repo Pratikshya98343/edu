@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, GraduationCap } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -10,8 +10,9 @@ const Footer = () => {
           
           {/* Logo and Description */}
           <div className="space-y-4">
-            <div className="bg-blue-600 px-4 py-2 rounded-lg inline-block">
-              <span className="text-white font-bold text-xl">Eduverse</span>
+            <div className="flex items-center space-x-2">
+              <GraduationCap className="w-8 h-8 text-blue-400" />
+              <span className="text-xl font-bold text-blue-400">EduVerse</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Empowering learners worldwide with quality education and innovative learning experiences.
